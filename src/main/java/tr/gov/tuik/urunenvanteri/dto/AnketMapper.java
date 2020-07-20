@@ -4,7 +4,5 @@ import org.mapstruct.Mapper;
 import tr.gov.tuik.urunenvanteri.entity.Anket;
 
 @Mapper(componentModel = "spring")
-public interface AnketMapper {
-
-    AnketDto toDto(Anket anket);
+public interface AnketMapper extends GenericMapper<Anket, AnketDto> {
 }

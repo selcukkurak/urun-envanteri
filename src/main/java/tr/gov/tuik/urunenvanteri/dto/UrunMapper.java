@@ -4,7 +4,5 @@ import org.mapstruct.Mapper;
 import tr.gov.tuik.urunenvanteri.entity.Urun;
 
 @Mapper(componentModel = "spring")
-public interface UrunMapper {
-
-    UrunDto toDto(Urun urun);
+public interface UrunMapper extends GenericMapper<Urun, UrunDto> {
 }

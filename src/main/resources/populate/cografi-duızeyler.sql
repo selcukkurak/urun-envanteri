@@ -1,0 +1,12 @@
+INSERT INTO cografi_duzey(id, adi) VALUES (5, 'Türkiye');
+INSERT INTO cografi_duzey(id, adi) VALUES (10, 'Kent-Kır');
+INSERT INTO cografi_duzey(id, adi) VALUES (15, 'İbbs-Düzey1');
+INSERT INTO cografi_duzey(id, adi) VALUES (20, 'İbbs-Düzey2');
+INSERT INTO cografi_duzey(id, adi) VALUES (25, 'İbbs-Düzey3 (İl)');
+INSERT INTO cografi_duzey(id, adi) VALUES (30, 'İbbs-Düzey3 (Sadece Seçili Iller)');
+INSERT INTO cografi_duzey(id, adi) VALUES (35, 'İbbs-Düzey4 (İlçe)');
+INSERT INTO cografi_duzey(id, adi) VALUES (40, 'Büyükşehir Belediye');
+INSERT INTO cografi_duzey(id, adi) VALUES (45, 'Belediye');
+INSERT INTO cografi_duzey(id, adi) VALUES (50, 'Belde-Köy');
+INSERT INTO cografi_duzey(id, adi) VALUES (55, 'Sandık Kurulu');
+INSERT INTO cografi_duzey(id, adi) VALUES (60, 'Dağıtımı Yok');
