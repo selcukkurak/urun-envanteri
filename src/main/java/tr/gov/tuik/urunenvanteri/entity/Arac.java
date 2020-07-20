@@ -12,6 +12,5 @@ public class Arac {
 
     @Id
     private Integer id;
-    private Integer kodu;
     private String adi;
 }

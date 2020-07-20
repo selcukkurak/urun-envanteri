@@ -1,0 +1,12 @@
+INSERT INTO periyot(id, adi) VALUES (5, 'Aylık');
+INSERT INTO periyot(id, adi) VALUES (10, 'Üç Aylık');
+INSERT INTO periyot(id, adi) VALUES (15, 'Altı Aylık');
+INSERT INTO periyot(id, adi) VALUES (20, 'Yıllık');
+INSERT INTO periyot(id, adi) VALUES (25, 'İki Yıllık');
+INSERT INTO periyot(id, adi) VALUES (30, 'Üç Yıllık');
+INSERT INTO periyot(id, adi) VALUES (35, 'Dört Yıllık');
+INSERT INTO periyot(id, adi) VALUES (40, 'Beş Yıllık');
+INSERT INTO periyot(id, adi) VALUES (45, 'On Yıllık');
+INSERT INTO periyot(id, adi) VALUES (50, 'Belirsiz');
+INSERT INTO periyot(id, adi) VALUES (1, 'Günlük');
+INSERT INTO periyot(id, adi) VALUES (55, 'Dağıtım Yok');

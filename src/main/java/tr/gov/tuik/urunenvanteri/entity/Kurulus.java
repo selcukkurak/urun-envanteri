@@ -1,4 +1,4 @@
-package tr.gov.tuik.urunenvanteri.dto;
+package tr.gov.tuik.urunenvanteri.entity;
 
 import lombok.Data;
 
@@ -7,7 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
-public class CografiDuzeyDto {
+@Entity
+@Table(name = "paylasim_kurulus")
+public class Kurulus {
+
+    @Id
     private Integer id;
     private String adi;
 }

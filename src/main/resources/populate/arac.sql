@@ -1,0 +1,16 @@
+INSERT INTO arac(id, adi) VALUES (1, 'EDAMIS');
+INSERT INTO arac(id, adi) VALUES (2, 'SDMX');
+INSERT INTO arac(id, adi) VALUES (3, 'WEB');
+INSERT INTO arac(id, adi) VALUES (4, 'ESS Metadata Handler');
+INSERT INTO arac(id, adi) VALUES (5, 'Excel');
+INSERT INTO arac(id, adi) VALUES (6, 'E-posta');
+INSERT INTO arac(id, adi) VALUES (7, 'IILMT');
+INSERT INTO arac(id, adi) VALUES (8, 'CRF Reporter');
+INSERT INTO arac(id, adi) VALUES (9, 'Bilgi Talebi');
+INSERT INTO arac(id, adi) VALUES (10, 'KTB');
+INSERT INTO arac(id, adi) VALUES (11, 'Soru Formu');
+INSERT INTO arac(id, adi) VALUES (12, 'EIONET');
+INSERT INTO arac(id, adi) VALUES (13, 'UNIDEMO');
+INSERT INTO arac(id, adi) VALUES (14, 'ICT');
+INSERT INTO arac(id, adi) VALUES (15, 'Resmi Yazışma');
+INSERT INTO arac(id, adi) VALUES (16, 'TÜİK-YDB');

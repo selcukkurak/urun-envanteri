@@ -1,13 +1,15 @@
-package tr.gov.tuik.urunenvanteri.dto;
+package tr.gov.tuik.urunenvanteri.entity;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Data
-public class BirimDuzeyDto {
+@Entity
+public class Periyot {
+
+    @Id
     private Integer id;
     private String adi;
 }
