@@ -24,4 +24,12 @@ public class Urun extends AuditableEntity {
     private String birimId;
 
     private boolean taslak = true;
+
+    @ManyToOne
+    private Referans periyot;
+
+    @ManyToOne
+    private Referans cografiDuzey;
+
+    private boolean uretiliyor;
 }

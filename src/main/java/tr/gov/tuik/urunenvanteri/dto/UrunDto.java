@@ -1,13 +1,22 @@
 package tr.gov.tuik.urunenvanteri.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
+import tr.gov.tuik.urunenvanteri.entity.Referans;
+
+import javax.persistence.ManyToOne;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class UrunDto extends AuditableEntity {
     private Long id;
     private String kodu;
     private String adi;
     private String csa;
     private String birimId;
+    private boolean taslak;
+    private ReferansDto periyot;
+    private ReferansDto cografiDuzey;
+    private boolean uretiliyor;
 }
