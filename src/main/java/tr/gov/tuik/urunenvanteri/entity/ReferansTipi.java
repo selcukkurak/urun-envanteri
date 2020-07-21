@@ -1,0 +1,17 @@
+package tr.gov.tuik.urunenvanteri.entity;
+
+public enum ReferansTipi {
+    ARAC,
+    ISTATISTIKI_BIRIM_DUZEY,
+    COGRAFI_DUZEY,
+    KURULUS,
+    PERIYOT,
+    VALIDASYON_TIPI,
+    VERI_AKTARIM_BICIMI,
+    VERI_DUZEYI,
+    VERI_KAYNAK_BICIMI,
+    VERI_KULLANIM_AMACI,
+    VERI_TALEP_BICIMI,
+    VERININ_TUTULDUGU_YER,
+    KAYNAK_KURUM
+}

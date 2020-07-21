@@ -1,0 +1,2 @@
+INSERT INTO referans(id, kodu, adi, tipi) VALUES (nextval('hibernate_sequence'), 1, 'Mikro', 'VERI_DUZEYI');
+INSERT INTO referans(id, kodu, adi, tipi) VALUES (nextval('hibernate_sequence'), 2, 'Makro', 'VERI_DUZEYI');

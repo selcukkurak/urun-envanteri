@@ -1,4 +1,4 @@
-INSERT INTO istatistiki_birim_duzey(id, adi) VALUES (1, 'Kişi');
-INSERT INTO istatistiki_birim_duzey(id, adi) VALUES (2, 'Hanehalkı');
-INSERT INTO istatistiki_birim_duzey(id, adi) VALUES (3, 'İşyeri');
-INSERT INTO istatistiki_birim_duzey(id, adi) VALUES (4, 'Diğer');
+INSERT INTO referans(id, kodu, adi, tipi) VALUES (nextval('hibernate_sequence'), 1, 'Kişi', 'ISTATISTIKI_BIRIM_DUZEY');
+INSERT INTO referans(id, kodu, adi, tipi) VALUES (nextval('hibernate_sequence'), 2, 'Hanehalkı', 'ISTATISTIKI_BIRIM_DUZEY');
+INSERT INTO referans(id, kodu, adi, tipi) VALUES (nextval('hibernate_sequence'), 3, 'İşyeri', 'ISTATISTIKI_BIRIM_DUZEY');
+INSERT INTO referans(id, kodu, adi, tipi) VALUES (nextval('hibernate_sequence'), 4, 'Diğer', 'ISTATISTIKI_BIRIM_DUZEY');
