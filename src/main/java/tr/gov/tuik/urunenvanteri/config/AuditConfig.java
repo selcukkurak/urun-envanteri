@@ -4,6 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import tr.gov.tuik.jwt.security.UserPrincipal;
 
 import java.util.Optional;
 
@@ -20,7 +24,15 @@ public class AuditConfig {
 
         @Override
         public Optional<Long> getCurrentAuditor() {
-            return Optional.of(1L);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+            if (auth == null || !auth.isAuthenticated() || auth instanceof AnonymousAuthenticationToken) {
+                return Optional.empty();
+            }
+
+            UserPrincipal principal = (UserPrincipal) auth.getPrincipal();
+
+            return Optional.ofNullable(principal.getId());
         }
     }
 }
