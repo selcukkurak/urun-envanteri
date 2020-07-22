@@ -2,6 +2,7 @@ package tr.gov.tuik.urunenvanteri.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "istatistiki_urun_haber_bulteni")
+@Audited
 public class UrunHaberBulteni extends AuditableEntity {
 
     @Id
