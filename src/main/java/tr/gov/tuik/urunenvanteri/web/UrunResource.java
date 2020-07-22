@@ -30,6 +30,15 @@ public class UrunResource {
                 .map(urunMapper::toDto);
     }
 
+    @GetMapping(params = "onayli")
+    public Stream<UrunDto> onayliUrunler(@RequestParam boolean onayli) {
+        if (onayli) {
+            return urunRepository.findByTaslakFalse()
+                    .stream()
+                    .map(urunMapper::toDto);
+        } else return urunler();
+    }
+
     @Admin
     @PostMapping
     public UrunDto urunEkle(@RequestBody UrunDto payload) {
