@@ -8,4 +8,11 @@ public class AnketDto {
     private String adi;
     private String csa;
     private String birimId;
+    private ReferansDto periyot;
+    private ReferansDto cografiDuzey;
+    private ReferansDto birimDuzey;
+    private Integer orneklemSayisi;
+    private String sema;
+    private Integer harzemliDurum;
+    private Integer ustDurum;
 }

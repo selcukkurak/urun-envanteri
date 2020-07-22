@@ -22,7 +22,7 @@ public class AnketResource {
 
     @GetMapping
     public Stream<AnketDto> anketler() {
-        return anketRepository.findAll()
+        return anketRepository.findAllBy()
                 .stream()
                 .map(anketMapper::toDto);
     }
