@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tr.gov.tuik.urunenvanteri.dto.ReferansDto;
 import tr.gov.tuik.urunenvanteri.dto.ReferansMapper;
+import tr.gov.tuik.urunenvanteri.dto.ReferanslarPayload;
 import tr.gov.tuik.urunenvanteri.entity.ReferansTipi;
 import tr.gov.tuik.urunenvanteri.repository.ReferansRepository;
 

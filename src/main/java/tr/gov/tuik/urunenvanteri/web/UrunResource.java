@@ -25,7 +25,7 @@ public class UrunResource {
 
     @GetMapping
     public Stream<UrunDto> urunler() {
-        return urunRepository.findAll()
+        return urunRepository.findAllBy()
                 .stream()
                 .map(urunMapper::toDto);
     }

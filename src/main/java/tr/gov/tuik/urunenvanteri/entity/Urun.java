@@ -2,9 +2,10 @@ package tr.gov.tuik.urunenvanteri.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -32,4 +33,7 @@ public class Urun extends AuditableEntity {
     private Referans cografiDuzey;
 
     private boolean uretiliyor;
+
+    @OneToMany(mappedBy = "urun")
+    List<UrunHaberBulteni> bultenler = new ArrayList<>();
 }

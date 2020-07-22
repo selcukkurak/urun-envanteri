@@ -1,7 +1,6 @@
-package tr.gov.tuik.urunenvanteri.web;
+package tr.gov.tuik.urunenvanteri.dto;
 
 import lombok.Data;
-import tr.gov.tuik.urunenvanteri.dto.ReferansDto;
 import tr.gov.tuik.urunenvanteri.entity.ReferansTipi;
 
 import java.util.List;

@@ -3,9 +3,9 @@ package tr.gov.tuik.urunenvanteri.dto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
-import tr.gov.tuik.urunenvanteri.entity.Referans;
 
-import javax.persistence.ManyToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -19,4 +19,5 @@ public class UrunDto extends AuditableEntity {
     private ReferansDto periyot;
     private ReferansDto cografiDuzey;
     private boolean uretiliyor;
+    private List<UrunHaberBulteniDto> bultenler = new ArrayList<>();
 }
