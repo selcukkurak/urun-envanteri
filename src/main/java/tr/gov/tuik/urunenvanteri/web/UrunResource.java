@@ -19,12 +19,14 @@ public class UrunResource {
     private final UrunMapper urunMapper;
     private final AnketMapper anketMapper;
     private final IdariKayitMapper idariKayitMapper;
+    private final PaylasimMapper paylasimMapper;
 
-    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper, AnketMapper anketMapper, IdariKayitMapper idariKayitMapper) {
+    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper, AnketMapper anketMapper, IdariKayitMapper idariKayitMapper, PaylasimMapper paylasimMapper) {
         this.urunRepository = urunRepository;
         this.urunMapper = urunMapper;
         this.anketMapper = anketMapper;
         this.idariKayitMapper = idariKayitMapper;
+        this.paylasimMapper = paylasimMapper;
     }
 
     @GetMapping
@@ -91,5 +93,14 @@ public class UrunResource {
                 .map(Collection::stream)
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id))
                 .map(idariKayitMapper::toDto);
+    }
+
+    @GetMapping("{id}/paylasimlar")
+    public Stream<PaylasimDto> urunPaylasimlar(@PathVariable Long id) {
+        return urunRepository.findById(id)
+                .map(Urun::getPaylasimlar)
+                .map(Collection::stream)
+                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id))
+                .map(paylasimMapper::toDto);
     }
 }
