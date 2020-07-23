@@ -1,15 +1,18 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import org.springframework.data.history.Revision;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import tr.gov.tuik.urunenvanteri.dto.AnketDto;
+import tr.gov.tuik.urunenvanteri.dto.AnketMapper;
 import tr.gov.tuik.urunenvanteri.dto.UrunDto;
 import tr.gov.tuik.urunenvanteri.dto.UrunMapper;
 import tr.gov.tuik.urunenvanteri.entity.Urun;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
+import tr.gov.tuik.urunenvanteri.repository.AnketRepository;
 import tr.gov.tuik.urunenvanteri.repository.UrunRepository;
 import tr.gov.tuik.urunenvanteri.security.Admin;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -18,10 +21,14 @@ import java.util.stream.Stream;
 public class UrunResource {
     private final UrunRepository urunRepository;
     private final UrunMapper urunMapper;
+    private final AnketRepository anketRepository;
+    private final AnketMapper anketMapper;
 
-    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper) {
+    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper, AnketRepository anketRepository, AnketMapper anketMapper) {
         this.urunRepository = urunRepository;
         this.urunMapper = urunMapper;
+        this.anketRepository = anketRepository;
+        this.anketMapper = anketMapper;
     }
 
     @GetMapping
@@ -70,5 +77,14 @@ public class UrunResource {
     @GetMapping("{id}/loglar")
     public List<Revision<Integer, Urun>> urunLoglari(@PathVariable Long id) {
         return urunRepository.findRevisions(id).getContent();
+    }
+
+    @GetMapping("{id}/anketler")
+    public Stream<AnketDto> urunAnketleri(@PathVariable Long id) {
+        return urunRepository.findById(id)
+                .map(Urun::getAnketler)
+                .map(Collection::stream)
+                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id))
+                .map(anketMapper::toDto);
     }
 }

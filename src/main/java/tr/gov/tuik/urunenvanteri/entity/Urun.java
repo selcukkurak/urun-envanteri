@@ -43,14 +43,23 @@ public class Urun extends AuditableEntity {
     List<UrunHaberBulteni> bultenler = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "istatistiki_urun_bagli_urun")
-    private List<Urun> urunler;
+    @JoinTable(
+            name = "istatistiki_urun_bagli_urun",
+            inverseJoinColumns = @JoinColumn(name = "bagli_urun_id")
+    )
+    private List<Urun> urunler = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "istatistiki_urun_anket")
-    private List<Anket> anketler;
+    @JoinTable(
+            name = "istatistiki_urun_anket",
+            inverseJoinColumns = @JoinColumn(name = "anket_id")
+    )
+    private List<Anket> anketler = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "istatistiki_urun_idari_kayit")
-    private List<IdariKayit> idariKayitlar;
+    @JoinTable(
+            name = "istatistiki_urun_idari_kayit",
+            inverseJoinColumns = @JoinColumn(name = "idari_kayit_id")
+    )
+    private List<IdariKayit> idariKayitlar = new ArrayList<>();
 }
