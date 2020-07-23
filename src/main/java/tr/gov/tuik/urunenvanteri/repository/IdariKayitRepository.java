@@ -6,8 +6,8 @@ import tr.gov.tuik.urunenvanteri.entity.IdariKayit;
 
 import java.util.List;
 
-public interface IdariKayitRepository extends JpaRepository<IdariKayit, Long> {
+public interface IdariKayitRepository extends JpaRepository<IdariKayit, String> {
 
-    @EntityGraph(attributePaths = {"cografiDuzey", "kullanimAmaci", "veriDuzeyi", "bicim", "aktarimBicimi", "transferPeriyot", "verininTutulduguYer", "talepBicimi", "birimDuzeyi"})
+    @EntityGraph(attributePaths = {"cografiDuzey", "kullanimAmaci", "veriDuzeyi", "bicim", "aktarimBicimi", "transferPeriyot", "verininTutulduguYer", "talepBicimi", "birimDuzeyi", "iletisimKisileri"})
     List<IdariKayit> findAllBy();
 }

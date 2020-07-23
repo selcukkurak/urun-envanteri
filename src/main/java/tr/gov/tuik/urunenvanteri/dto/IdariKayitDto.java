@@ -2,14 +2,10 @@ package tr.gov.tuik.urunenvanteri.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.envers.Audited;
 import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
-import tr.gov.tuik.urunenvanteri.entity.Referans;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -48,4 +44,5 @@ public class IdariKayitDto extends AuditableEntity {
     private String talepBicimiDigerAciklama;
     private ReferansDto birimDuzeyi;
     private String birimDuzeyiDigerAciklama;
+    private List<IletisimKisiDto> iletisimKisileri = new ArrayList<>();
 }
