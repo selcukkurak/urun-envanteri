@@ -2,13 +2,9 @@ package tr.gov.tuik.urunenvanteri.web;
 
 import org.springframework.data.history.Revision;
 import org.springframework.web.bind.annotation.*;
-import tr.gov.tuik.urunenvanteri.dto.AnketDto;
-import tr.gov.tuik.urunenvanteri.dto.AnketMapper;
-import tr.gov.tuik.urunenvanteri.dto.UrunDto;
-import tr.gov.tuik.urunenvanteri.dto.UrunMapper;
+import tr.gov.tuik.urunenvanteri.dto.*;
 import tr.gov.tuik.urunenvanteri.entity.Urun;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
-import tr.gov.tuik.urunenvanteri.repository.AnketRepository;
 import tr.gov.tuik.urunenvanteri.repository.UrunRepository;
 import tr.gov.tuik.urunenvanteri.security.Admin;
 
@@ -21,14 +17,14 @@ import java.util.stream.Stream;
 public class UrunResource {
     private final UrunRepository urunRepository;
     private final UrunMapper urunMapper;
-    private final AnketRepository anketRepository;
     private final AnketMapper anketMapper;
+    private final IdariKayitMapper idariKayitMapper;
 
-    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper, AnketRepository anketRepository, AnketMapper anketMapper) {
+    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper, AnketMapper anketMapper, IdariKayitMapper idariKayitMapper) {
         this.urunRepository = urunRepository;
         this.urunMapper = urunMapper;
-        this.anketRepository = anketRepository;
         this.anketMapper = anketMapper;
+        this.idariKayitMapper = idariKayitMapper;
     }
 
     @GetMapping
@@ -86,5 +82,14 @@ public class UrunResource {
                 .map(Collection::stream)
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id))
                 .map(anketMapper::toDto);
+    }
+
+    @GetMapping("{id}/idari-kayitlar")
+    public Stream<IdariKayitDto> urunIdariKayitlari(@PathVariable Long id) {
+        return urunRepository.findById(id)
+                .map(Urun::getIdariKayitlar)
+                .map(Collection::stream)
+                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id))
+                .map(idariKayitMapper::toDto);
     }
 }
