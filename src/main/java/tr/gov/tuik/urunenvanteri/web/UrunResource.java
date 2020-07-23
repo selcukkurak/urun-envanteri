@@ -1,5 +1,6 @@
 package tr.gov.tuik.urunenvanteri.web;
 
+import org.springframework.data.history.Revision;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.UrunDto;
@@ -67,7 +68,7 @@ public class UrunResource {
 
     @Admin
     @GetMapping("{id}/loglar")
-    public List urunLoglari(@PathVariable Long id) {
+    public List<Revision<Integer, Urun>> urunLoglari(@PathVariable Long id) {
         return urunRepository.findRevisions(id).getContent();
     }
 }

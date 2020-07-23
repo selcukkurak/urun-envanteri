@@ -1,6 +1,9 @@
 package tr.gov.tuik.urunenvanteri.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Entity
-public class Anket {
+@Audited
+public class Anket extends AuditableEntity {
 
     @Id
     private String id;
@@ -20,12 +25,15 @@ public class Anket {
     private String birimId;
 
     @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Referans periyot;
 
     @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Referans cografiDuzey;
 
     @ManyToOne
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Referans birimDuzey;
 
     private Integer orneklemSayisi;
