@@ -1,4 +1,4 @@
-package tr.gov.tuik.urunenvanteri.dto;
+package tr.gov.tuik.urunenvanteri.dto.mapper;
 
 public interface GenericMapper<IN, OUT> {
 

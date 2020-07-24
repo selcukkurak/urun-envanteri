@@ -1,6 +1,8 @@
-package tr.gov.tuik.urunenvanteri.dto;
+package tr.gov.tuik.urunenvanteri.dto.mapper;
 
 import lombok.extern.slf4j.Slf4j;
+import tr.gov.tuik.urunenvanteri.dto.Bulten;
+import tr.gov.tuik.urunenvanteri.dto.BultenYayin;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

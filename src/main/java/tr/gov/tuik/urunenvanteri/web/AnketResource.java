@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tr.gov.tuik.urunenvanteri.dto.AnketDto;
-import tr.gov.tuik.urunenvanteri.dto.AnketMapper;
+import tr.gov.tuik.urunenvanteri.dto.mapper.AnketMapper;
 import tr.gov.tuik.urunenvanteri.repository.AnketRepository;
 
 import java.util.stream.Stream;

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tr.gov.tuik.urunenvanteri.client.WebIcerikClient;
 import tr.gov.tuik.urunenvanteri.dto.Bulten;
-import tr.gov.tuik.urunenvanteri.dto.BultenMapper;
+import tr.gov.tuik.urunenvanteri.dto.mapper.BultenMapper;
 
 import java.util.stream.Stream;
 
