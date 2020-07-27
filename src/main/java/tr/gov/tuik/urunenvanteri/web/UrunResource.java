@@ -75,6 +75,11 @@ public class UrunResource {
         return urunMapper.toDto(urunRepository.save(urun));
     }
 
+    @GetMapping("sayilar")
+    public List<UrunRaporDto> sayilar() {
+        return urunRepository.urunGirdiSayilari();
+    }
+
     @Admin
     @GetMapping("{id}/loglar")
     public List<Revision<Integer, Urun>> urunLoglari(@PathVariable Long id) {
