@@ -1,5 +1,7 @@
-package tr.gov.tuik.urunenvanteri.dto;
+package tr.gov.tuik.urunenvanteri.dto.mapper;
 
+import tr.gov.tuik.urunenvanteri.dto.KaynakKurumDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunKaynakKurumDto;
 import tr.gov.tuik.urunenvanteri.entity.Urun;
 
 import java.util.stream.Collectors;

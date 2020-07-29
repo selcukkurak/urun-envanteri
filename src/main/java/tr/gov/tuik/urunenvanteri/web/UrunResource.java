@@ -2,17 +2,16 @@ package tr.gov.tuik.urunenvanteri.web;
 
 import org.springframework.data.history.Revision;
 import org.springframework.web.bind.annotation.*;
-import tr.gov.tuik.urunenvanteri.dto.*;
-import tr.gov.tuik.urunenvanteri.dto.mapper.AnketMapper;
-import tr.gov.tuik.urunenvanteri.dto.mapper.IdariKayitMapper;
-import tr.gov.tuik.urunenvanteri.dto.mapper.PaylasimMapper;
-import tr.gov.tuik.urunenvanteri.dto.mapper.UrunMapper;
+import tr.gov.tuik.urunenvanteri.dto.UrunDetayDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunKaynakKurumDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunRaporDto;
+import tr.gov.tuik.urunenvanteri.dto.mapper.*;
 import tr.gov.tuik.urunenvanteri.entity.Urun;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.UrunRepository;
 import tr.gov.tuik.urunenvanteri.security.Admin;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -75,6 +74,13 @@ public class UrunResource {
         return urunMapper.toDto(urunRepository.save(urun));
     }
 
+    @GetMapping("{id}")
+    public UrunDetayDto urunDetay(@PathVariable Long id) {
+        return urunRepository.findWithDetayById(id)
+                .map(urunMapper::toDetayDto)
+                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
+    }
+
     @GetMapping("sayilar")
     public List<UrunRaporDto> sayilar() {
         return urunRepository.urunGirdiSayilari();
@@ -91,32 +97,5 @@ public class UrunResource {
     @GetMapping("{id}/loglar")
     public List<Revision<Integer, Urun>> urunLoglari(@PathVariable Long id) {
         return urunRepository.findRevisions(id).getContent();
-    }
-
-    @GetMapping("{id}/anketler")
-    public Stream<AnketDto> urunAnketleri(@PathVariable Long id) {
-        return urunRepository.findById(id)
-                .map(Urun::getAnketler)
-                .map(Collection::stream)
-                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id))
-                .map(anketMapper::toDto);
-    }
-
-    @GetMapping("{id}/idari-kayitlar")
-    public Stream<IdariKayitDto> urunIdariKayitlari(@PathVariable Long id) {
-        return urunRepository.findById(id)
-                .map(Urun::getIdariKayitlar)
-                .map(Collection::stream)
-                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id))
-                .map(idariKayitMapper::toDto);
-    }
-
-    @GetMapping("{id}/paylasimlar")
-    public Stream<PaylasimDto> urunPaylasimlar(@PathVariable Long id) {
-        return urunRepository.findById(id)
-                .map(Urun::getPaylasimlar)
-                .map(Collection::stream)
-                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id))
-                .map(paylasimMapper::toDto);
     }
 }

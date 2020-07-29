@@ -1,18 +1,20 @@
 package tr.gov.tuik.urunenvanteri.dto.mapper;
 
-import lombok.extern.slf4j.Slf4j;
+import org.mapstruct.Mapper;
 import tr.gov.tuik.urunenvanteri.dto.Bulten;
 import tr.gov.tuik.urunenvanteri.dto.BultenYayin;
+import tr.gov.tuik.urunenvanteri.dto.UrunHaberBulteniDto;
+import tr.gov.tuik.urunenvanteri.entity.UrunHaberBulteni;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Map;
 
-@Slf4j
-public class BultenMapper {
+@Mapper
+public interface BultenMapper extends GenericMapper<UrunHaberBulteni, UrunHaberBulteniDto> {
 
-    public static Bulten toDto(Map<String, Object> bulten) {
+
+    static Bulten toDto(Map<String, Object> bulten) {
         return new Bulten(
                 (Integer) bulten.get("HB_ID"),
                 (String) bulten.get("ADI"),
