@@ -27,7 +27,9 @@ pipeline {
           imageName = 'tuik/' + properties.name
           imageVersion = properties.version + "-$BUILD_NUMBER"
         }
-        mavenBuild()
+        mavenBuild(
+            mavenImage: 'dockerhub.tuik.gov.tr/tuik/jenkins-maven:3.6.3-adoptopenjdk-11',
+        )
       }
     }
 
