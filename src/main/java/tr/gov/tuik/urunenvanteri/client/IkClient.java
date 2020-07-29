@@ -11,5 +11,5 @@ import java.util.List;
 public interface IkClient {
 
     @GetMapping(value = "/api/birimler/detay")
-    List<Birim> birimler(@RequestParam boolean merkez);
+    List<Birim> birimler(@RequestParam("merkez") boolean merkez);
 }
