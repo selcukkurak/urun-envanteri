@@ -8,7 +8,7 @@ import tr.gov.tuik.urunenvanteri.entity.Urun;
 @Mapper(componentModel = "spring",
         uses = {
                 ReferansMapper.class,
-                BultenMapper.class,
+                UrunHaberBulteniMapper.class,
                 PaylasimMapper.class,
                 AnketMapper.class,
                 IdariKayitMapper.class
