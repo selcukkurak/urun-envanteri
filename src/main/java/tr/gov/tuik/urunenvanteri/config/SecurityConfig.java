@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(SecurityConfigHelper.AUTH_TOKEN_URL).permitAll()
                 .antMatchers(SecurityConfigHelper.VARSAYILAN_PERMIT_ALL_DURUMLARI).permitAll()
-                .antMatchers("/api/urunler").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated();
     }
 }
