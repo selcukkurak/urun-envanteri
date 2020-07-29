@@ -2,6 +2,7 @@ package tr.gov.tuik.urunenvanteri.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
@@ -35,12 +36,15 @@ public class IdariKayit extends AuditableEntity {
     private String kisitlar;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String icerik;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String yasalHukum;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String teslimatSartlari;
 
     @ManyToOne
