@@ -21,6 +21,7 @@ public class IdariKayit extends AuditableEntity {
     private String adi;
     private String kaynakKurumDtvt;
     private String kaynakBirimDtvt;
+    private Integer kaynakKurumId;
     private String kaynakKurumAdi;
     private String kaynakBirimAdi;
     private String birimId;

@@ -80,6 +80,13 @@ public class UrunResource {
         return urunRepository.urunGirdiSayilari();
     }
 
+    @GetMapping("kaynak-kurumlar")
+    public Stream<UrunKaynakKurumDto> urunKaynakKurumlari() {
+        return urunRepository.findAllWithIdariKayitBy()
+                .stream()
+                .map(UrunKaynakKurumMapper::toDto);
+    }
+
     @Admin
     @GetMapping("{id}/loglar")
     public List<Revision<Integer, Urun>> urunLoglari(@PathVariable Long id) {

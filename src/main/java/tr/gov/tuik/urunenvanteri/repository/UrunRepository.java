@@ -19,4 +19,7 @@ public interface UrunRepository extends JpaRepository<Urun, Long>, RevisionRepos
 
     @Query("select new tr.gov.tuik.urunenvanteri.dto.UrunRaporDto(u.id, u.urunler.size, u.anketler.size, u.idariKayitlar.size) from Urun u")
     List<UrunRaporDto> urunGirdiSayilari();
+
+    @EntityGraph(attributePaths = {"idariKayitlar"})
+    List<Urun> findAllWithIdariKayitBy();
 }
