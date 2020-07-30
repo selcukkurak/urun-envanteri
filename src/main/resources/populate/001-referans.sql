@@ -132,7 +132,7 @@ INSERT INTO referans (id, adi, kodu, tipi) VALUES (130, 'İçişleri Bakanliği 
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (131, 'TARIM VE ORMAN BAKANLIĞI ', 122, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (132, 'Çimento fabrikaları ve Çimento Müstahsilleri Birliği', 163, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (133, 'Sağlık Bakanlığı', 159, 'KAYNAK_KURUM');
-INSERT INTO referans (id, adi, kodu, tipi) VALUES (134, ' FİDB Tarımsal Fiyat İstatistikleri Grup Başkanlığı', 142, 'KAYNAK_KURUM');
+INSERT INTO referans (id, adi, kodu, tipi) VALUES (134, 'FİDB Tarımsal Fiyat İstatistikleri Grup Başkanlığı', 142, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (135, 'Ulaştırma ve Altyapı Bakanlığı', 175, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (136, 'Türk Hava Yolları', 112, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (137, 'Tarim Ve Orman Bakanliği (Gida, Tarim Ve Hayvancilik) Şeker Dairesi Başkanliği', 31, 'KAYNAK_KURUM');
@@ -150,7 +150,7 @@ INSERT INTO referans (id, adi, kodu, tipi) VALUES (148, 'Üretici Birlikleri', 9
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (149, 'Tarim Ve Orman Bakanliği (Gida, Tarim Ve Hayvancilik)', 88, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (150, 'İçişleri Bakanlığı Göç İdaresi Genel Müdürlüğü', 92, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (151, 'Kültür Ve Turizm Bakanliği Kütüphane Ve Yayimlar Genel Müdürlüğü', 80, 'KAYNAK_KURUM');
-INSERT INTO referans (id, adi, kodu, tipi) VALUES (152, ' Sanayi ve Teknoloji Bakanlığı/OSB Genel Müdürlüğü', 173, 'KAYNAK_KURUM');
+INSERT INTO referans (id, adi, kodu, tipi) VALUES (152, 'Sanayi ve Teknoloji Bakanlığı/OSB Genel Müdürlüğü', 173, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (153, 'Tarım ve Orman Bakanlığı', 122, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (154, 'Türkiye Cumhuriyet Merkez Bankasi', 22, 'KAYNAK_KURUM');
 INSERT INTO referans (id, adi, kodu, tipi) VALUES (155, 'Tarim Ve Orman Bakanliği (Orman Ve Su İşleri) Bilgi İşlem Daire Başkanliği', 73, 'KAYNAK_KURUM');
