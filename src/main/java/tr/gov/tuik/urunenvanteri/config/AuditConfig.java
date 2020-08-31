@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import tr.gov.tuik.jwt.security.UserPrincipal;
+import tr.gov.tuik.ed.security.EDUserPrincipal;
 
 import java.util.Optional;
 
@@ -20,7 +20,7 @@ public class AuditConfig {
         return new SpringSecurityAuditAwareImpl();
     }
 
-    public class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
+    public static class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
 
         @Override
         public Optional<Long> getCurrentAuditor() {
@@ -30,9 +30,9 @@ public class AuditConfig {
                 return Optional.empty();
             }
 
-            UserPrincipal principal = (UserPrincipal) auth.getPrincipal();
+            EDUserPrincipal principal = (EDUserPrincipal) auth.getPrincipal();
 
-            return Optional.ofNullable(principal.getId());
+            return Optional.ofNullable(principal.getKullanici().getKullaniciId());
         }
     }
 }
