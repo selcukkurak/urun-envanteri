@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SecurityConfigHelper.AUTH_TOKEN_URL).permitAll()
                 .antMatchers(SecurityConfigHelper.VARSAYILAN_PERMIT_ALL_DURUMLARI).permitAll()
                 .antMatchers("/api/**").permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated();
     }
 }

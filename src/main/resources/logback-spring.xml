@@ -1,0 +1,38 @@
+<!DOCTYPE configuration>
+<configuration>
+    <jmxConfigurator/>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <springProfile name="docker">
+        <!-- Burada spring property olarak tanımladığımız bilgileri logback'e iletiyoruz.
+        Bu şekilde ister properties dosyasından ister ortam değişkeninden bu bilgileri verebiliriz. -->
+        <springProperty name="url" source="application.graylog.url" defaultValue="localhost" />
+        <springProperty name="port" source="application.graylog.port" defaultValue="12201" />
+        <springProperty name="env" source="application.graylog.env" defaultValue="dev" />
+        <springProperty name="name" source="application.graylog.name" defaultValue="TANIMSIZ" />
+
+        <appender name="GELF" class="biz.paluch.logging.gelf.logback.GelfLogbackAppender">
+            <host>udp:${url}</host>
+            <port>${port}</port>
+            <version>1.1</version>
+            <facility>logback</facility>
+            <extractStackTrace>true</extractStackTrace>
+            <filterStackTrace>true</filterStackTrace>
+            <mdcProfiling>true</mdcProfiling>
+            <timestampPattern>yyyy-MM-dd HH:mm:ss,SSS</timestampPattern>
+            <maximumMessageSize>8192</maximumMessageSize>
+            <originHost>hasantekgultuik</originHost>
+
+            <!-- This are static fields -->
+            <additionalFields>environment=${env},application=${name}</additionalFields>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>INFO</level>
+            </filter>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="GELF" />
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+</configuration>
