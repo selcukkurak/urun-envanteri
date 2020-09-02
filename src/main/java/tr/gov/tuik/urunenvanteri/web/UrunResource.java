@@ -20,16 +20,10 @@ import java.util.stream.Stream;
 public class UrunResource {
     private final UrunRepository urunRepository;
     private final UrunMapper urunMapper;
-    private final AnketMapper anketMapper;
-    private final IdariKayitMapper idariKayitMapper;
-    private final PaylasimMapper paylasimMapper;
 
-    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper, AnketMapper anketMapper, IdariKayitMapper idariKayitMapper, PaylasimMapper paylasimMapper) {
+    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper) {
         this.urunRepository = urunRepository;
         this.urunMapper = urunMapper;
-        this.anketMapper = anketMapper;
-        this.idariKayitMapper = idariKayitMapper;
-        this.paylasimMapper = paylasimMapper;
     }
 
     @GetMapping
