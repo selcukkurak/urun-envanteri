@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -19,6 +20,9 @@ public class Paylasim extends AuditableEntity {
     private Long id;
 
     private String adi;
+
+    @Column(name = "urun_id", updatable = false, insertable = false)
+    private Long urunId;
 
     @ManyToOne
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
