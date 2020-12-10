@@ -1,12 +1,16 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tr.gov.tuik.urunenvanteri.client.WebIcerikClient;
 import tr.gov.tuik.urunenvanteri.dto.Bulten;
+import tr.gov.tuik.urunenvanteri.dto.MetaveriDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.BultenMapper;
+import tr.gov.tuik.urunenvanteri.dto.mapper.MetaveriMapper;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -23,5 +27,12 @@ public class HaberBulteniResource {
         return webIcerikClient.getHaberBultenleri()
                 .stream()
                 .map(BultenMapper::toDto);
+    }
+    @GetMapping("/metaveri/{id}")
+    public Stream<List<MetaveriDto>> metaverileriGetir(@PathVariable List<Long> id){
+        return  webIcerikClient.getBultenMetaverileri(id)
+                    .stream()
+                    .map(MetaveriMapper::toDtoList);
+
     }
 }
