@@ -20,4 +20,5 @@ public class UrunDto extends AuditableEntity {
     private ReferansDto cografiDuzey;
     private boolean uretiliyor;
     private List<UrunHaberBulteniDto> bultenler = new ArrayList<>();
+    private List<MetodolojiDto> metodolojiler = new ArrayList<>();
 }
