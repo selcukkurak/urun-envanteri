@@ -43,6 +43,9 @@ public class Urun extends AuditableEntity {
     List<UrunHaberBulteni> bultenler = new ArrayList<>();
 
     @OneToMany(mappedBy = "urun")
+    List<Metodoloji> metodolojiler = new ArrayList<>();
+
+    @OneToMany(mappedBy = "urun")
     public List<Paylasim> paylasimlar = new ArrayList<>();
 
     @ManyToMany
