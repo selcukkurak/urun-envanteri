@@ -11,7 +11,8 @@ import tr.gov.tuik.urunenvanteri.entity.Urun;
                 UrunHaberBulteniMapper.class,
                 PaylasimMapper.class,
                 AnketMapper.class,
-                IdariKayitMapper.class
+                IdariKayitMapper.class,
+                MetodolojiMapper.class
         })
 public interface UrunMapper extends GenericMapper<Urun, UrunDto> {
 
