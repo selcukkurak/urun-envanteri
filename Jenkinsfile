@@ -38,5 +38,18 @@ pipeline {
         dockerBuild(imageName: imageName, version: imageVersion)
       }
     }
+
+    stage('Deploy') {
+          steps {
+            sshagent(credentials: ['ef206fcc-040b-4388-98e9-272bbea3863c']) {
+              sh 'rm -rf envanter-deploy'
+              sh 'git clone git@git.tuik.gov.tr:dijital-donusum/envanter-deploy.git'
+
+              dir('envanter-deploy') {
+                sh "cd ./test && /usr/local/bin/kustomize edit set image dockerhub.tuik.gov.tr/$imageName=dockerhub.tuik.gov.tr/$imageName:$imageVersion"
+                sh "git commit -am 'servis yeni sürüm: $imageVersion' && git push || echo 'no changes'"
+              }
+         }
+    }
   }
 }
