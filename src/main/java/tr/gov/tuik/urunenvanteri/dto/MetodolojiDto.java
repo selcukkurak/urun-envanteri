@@ -6,6 +6,7 @@ import lombok.Data;
 public class MetodolojiDto {
 
     private Long id;
+    private Long urunId;
     private String adi;
     private String standartiBelirleyenKurum;
     private String dokumanAdi;

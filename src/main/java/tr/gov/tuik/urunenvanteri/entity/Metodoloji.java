@@ -14,6 +14,8 @@ public class Metodoloji extends AuditableEntity {
 
     @Id
     private Long id;
+    @Column(name = "urun_id", updatable = false, insertable = false)
+    private Long urunId;
     private String adi;
     private String standartiBelirleyenKurum;
     private String dokumanAdi;
