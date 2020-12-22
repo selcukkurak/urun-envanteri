@@ -49,7 +49,8 @@ pipeline {
                 sh "cd ./test && /usr/local/bin/kustomize edit set image dockerhub.tuik.gov.tr/$imageName=dockerhub.tuik.gov.tr/$imageName:$imageVersion"
                 sh "git commit -am 'servis yeni sürüm: $imageVersion' && git push || echo 'no changes'"
               }
-         }
+            }
+          }
     }
   }
 }
