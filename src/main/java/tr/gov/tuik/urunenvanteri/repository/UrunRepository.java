@@ -26,4 +26,7 @@ public interface UrunRepository extends JpaRepository<Urun, Long>, RevisionRepos
 
     @EntityGraph(attributePaths = {"idariKayitlar"})
     List<Urun> findAllWithIdariKayitBy();
+
+    @EntityGraph(attributePaths = {"paylasimlar" , "paylasimlar.kurulus"})
+    List<Urun> findAllWithPaylasimlarBy();
 }

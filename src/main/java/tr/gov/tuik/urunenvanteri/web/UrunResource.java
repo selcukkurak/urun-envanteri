@@ -2,10 +2,7 @@ package tr.gov.tuik.urunenvanteri.web;
 
 import org.springframework.data.history.Revision;
 import org.springframework.web.bind.annotation.*;
-import tr.gov.tuik.urunenvanteri.dto.UrunDetayDto;
-import tr.gov.tuik.urunenvanteri.dto.UrunDto;
-import tr.gov.tuik.urunenvanteri.dto.UrunKaynakKurumDto;
-import tr.gov.tuik.urunenvanteri.dto.UrunRaporDto;
+import tr.gov.tuik.urunenvanteri.dto.*;
 import tr.gov.tuik.urunenvanteri.dto.mapper.*;
 import tr.gov.tuik.urunenvanteri.entity.Urun;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
@@ -20,10 +17,12 @@ import java.util.stream.Stream;
 public class UrunResource {
     private final UrunRepository urunRepository;
     private final UrunMapper urunMapper;
+    private final UrunKurulusMapper urunKurulusMapper;
 
-    public UrunResource(UrunRepository urunRepository, UrunMapper urunMapper) {
+    public UrunResource(UrunRepository urunRepository,UrunKurulusMapper urunKurulusMapper, UrunMapper urunMapper) {
         this.urunRepository = urunRepository;
         this.urunMapper = urunMapper;
+        this.urunKurulusMapper = urunKurulusMapper;
     }
 
     @GetMapping
@@ -85,6 +84,12 @@ public class UrunResource {
         return urunRepository.findAllWithIdariKayitBy()
                 .stream()
                 .map(UrunKaynakKurumMapper::toDto);
+    }
+    @GetMapping("kuruluslar")
+    public Stream<UrunKurulusDto> urunKuruluslari() {
+        return urunRepository.findAllWithPaylasimlarBy()
+                .stream()
+                .map(urunKurulusMapper::toDto);
     }
 
     @Admin
