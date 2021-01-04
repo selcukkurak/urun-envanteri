@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface TakvimClient {
 
     @GetMapping("/api/TuikWeb/Bultenler/GetHaberBulteniLink")
-    String getHaberBulteniLink(@RequestParam Integer id, @RequestParam int dilId);
+    String getHaberBulteniLink(@RequestParam("id") Integer id, @RequestParam("dilId") int dilId);
 }
