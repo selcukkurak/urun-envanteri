@@ -1,9 +1,7 @@
 package tr.gov.tuik.urunenvanteri.web;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import tr.gov.tuik.urunenvanteri.client.TakvimClient;
 import tr.gov.tuik.urunenvanteri.client.WebIcerikClient;
 import tr.gov.tuik.urunenvanteri.dto.Bulten;
 import tr.gov.tuik.urunenvanteri.dto.MetaveriDto;
@@ -17,9 +15,11 @@ import java.util.stream.Stream;
 @RequestMapping("/api/bultenler")
 public class HaberBulteniResource {
     private final WebIcerikClient webIcerikClient;
+    private final TakvimClient takvimClient;
 
-    public HaberBulteniResource(WebIcerikClient webIcerikClient) {
+    public HaberBulteniResource(WebIcerikClient webIcerikClient, TakvimClient takvimClient) {
         this.webIcerikClient = webIcerikClient;
+        this.takvimClient = takvimClient;
     }
 
     @GetMapping
@@ -28,6 +28,13 @@ public class HaberBulteniResource {
                 .stream()
                 .map(BultenMapper::toDto);
     }
+
+    @GetMapping("/url")
+    public String bultenUrlGetir(@RequestParam int id, @RequestParam int dilId) {
+        String bultenBaslik = takvimClient.getHaberBulteniLink(id, dilId);
+        return "https://data.tuik.gov.tr/Bulten/Index?p=" + bultenBaslik;
+    }
+
     @GetMapping("/metaveri/{id}")
     public Stream<List<MetaveriDto>> metaverileriGetir(@PathVariable List<Long> id){
         return  webIcerikClient.getBultenMetaverileri(id)

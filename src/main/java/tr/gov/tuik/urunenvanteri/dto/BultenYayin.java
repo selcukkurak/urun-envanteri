@@ -8,6 +8,5 @@ import java.time.LocalDateTime;
 public class BultenYayin {
     private final Integer id;
     private final String donemi;
-    private final String url;
     private final LocalDateTime tarih;
 }

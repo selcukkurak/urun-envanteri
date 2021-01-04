@@ -16,7 +16,6 @@ public class BultenMapper {
                 new BultenYayin(
                         (Integer) bulten.get("SON_BULTEN_ID"),
                         (String) bulten.get("DONEMI"),
-                        (String) bulten.get("URL"),
                         LocalDateTime.parse((String) bulten.get("TARIH"), DateTimeFormatter.ISO_ZONED_DATE_TIME)
                 )
         );
