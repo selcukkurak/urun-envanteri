@@ -74,6 +74,13 @@ public class UrunResource {
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
     }
 
+    @GetMapping("baglantilar")
+    public Stream<UrunBagliUrunlerDto> urunBaglantilari() {
+        return urunRepository.findWithUrunlerByTaslakFalse()
+                .stream()
+                .map(urunMapper::toBagliUrunDto);
+    }
+
     @GetMapping("sayilar")
     public List<UrunRaporDto> sayilar() {
         return urunRepository.urunGirdiSayilari();
