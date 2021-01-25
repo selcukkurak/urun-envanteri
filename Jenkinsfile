@@ -36,16 +36,5 @@ pipeline {
         dockerBuild(imageName: imageName, version: imageVersion)
       }
     }
-
-    stage('Deploy') {
-      steps {
-        deployArgo(
-          imageName: imageName,
-          imageVersion: imageVersion,
-          message: "servis sürüm güncelle: $imageVersion",
-          deployUrl: 'git@git.tuik.gov.tr:dijital-donusum/envanter-deploy.git'
-        )
-      }
-    }
   }
 }
