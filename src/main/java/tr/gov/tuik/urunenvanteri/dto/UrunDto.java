@@ -14,6 +14,9 @@ public class UrunDto extends AuditableEntity {
     private String kodu;
     private String adi;
     private String csa;
+    private String amac;
+    private String kapsam;
+    private String fayda;
     private String birimId;
     private boolean taslak;
     private ReferansDto periyot;
