@@ -15,4 +15,8 @@ public class AnketDto {
     private String sema;
     private Integer harzemliDurum;
     private Integer ustDurum;
+    private Integer anketorSayisiMerkez;
+    private Integer anketorSayisiBolge;
+    private Integer kontrolorSayisiMerkez;
+    private Integer kontrolorSayisiBolge;
 }

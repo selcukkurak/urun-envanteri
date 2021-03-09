@@ -26,6 +26,7 @@ public class IdariKayit extends AuditableEntity {
     private String kaynakKurumAdi;
     private String kaynakBirimAdi;
     private String birimId;
+    private Boolean taslak;
     private String transferdenSorumluBirimId;
     private String epostaGruplari;
     private String csa;
@@ -99,6 +100,9 @@ public class IdariKayit extends AuditableEntity {
 
     @OneToMany(mappedBy = "idariKayit")
     private List<IletisimKisi> iletisimKisileri = new ArrayList<>();
+
+    @OneToMany(mappedBy = "idariKayit")
+    private List<TabloBilgileri> tabloBilgileri = new ArrayList<>();
 
 
 }

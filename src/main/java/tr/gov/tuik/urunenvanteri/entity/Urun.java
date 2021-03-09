@@ -26,6 +26,7 @@ public class Urun extends AuditableEntity {
     private String amac;
     private String kapsam;
     private String fayda;
+    private Long zamanlilik;
 
     @Column(name = "birim_id")
     private String birimId;

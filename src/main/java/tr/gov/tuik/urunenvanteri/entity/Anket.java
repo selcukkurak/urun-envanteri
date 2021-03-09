@@ -37,9 +37,21 @@ public class Anket extends AuditableEntity {
     private Referans birimDuzey;
 
     private Integer orneklemSayisi;
+    private Boolean taslak;
     private String sema;
     private Integer harzemliDurum;
     private Integer ustDurum;
 
+    @Column(name = "anketor_sayisi_merkez")
+    private Integer anketorSayisiMerkez;
+
+    @Column(name = "kontrolor_sayisi_merkez")
+    private Integer kontrolorSayisiMerkez;
+
+    @Column(name = "anketor_sayisi_bolge")
+    private Integer anketorSayisiBolge;
+
+    @Column(name = "kontrolor_sayisi_bolge")
+    private Integer kontrolorSayisiBolge;
 
 }
