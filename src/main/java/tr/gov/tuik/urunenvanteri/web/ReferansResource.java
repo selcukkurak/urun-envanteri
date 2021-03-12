@@ -40,6 +40,12 @@ public class ReferansResource {
         return ReferansTipi.values();
     }
 
+    @GetMapping("kurum-sayisi")
+    public Object kurumSayisi(){ return referansRepository.kurumSayisi(); }
+
+    @GetMapping("kurulus-sayisi")
+    public Object kurulusSayisi(){ return referansRepository.kurulusSayisi(); }
+
     @GetMapping(params = "tipi")
     public Stream<ReferansDto> araclar(@RequestParam ReferansTipi tipi) {
         return referansRepository.findByTipi(tipi)
