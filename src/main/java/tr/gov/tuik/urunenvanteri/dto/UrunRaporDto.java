@@ -8,5 +8,4 @@ public class UrunRaporDto {
     private final int urun;
     private final int anket;
     private final int idariKayit;
-    private final int bultenler;
 }
