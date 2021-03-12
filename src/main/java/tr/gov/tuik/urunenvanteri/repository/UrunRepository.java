@@ -25,8 +25,11 @@ public interface UrunRepository extends JpaRepository<Urun, Long>, RevisionRepos
     @EntityGraph(attributePaths = {"urunler"})
     List<Urun> findWithUrunlerByTaslakFalse();
 
-    @Query("select new tr.gov.tuik.urunenvanteri.dto.UrunRaporDto(u.id, size(u.urunler), size(u.anketler), size(u.idariKayitlar), size(u.bultenler) ) from Urun u")
+    @Query("select new tr.gov.tuik.urunenvanteri.dto.UrunRaporDto(u.id, size(u.urunler), size(u.anketler), size(u.idariKayitlar) ) from Urun u")
     List<UrunRaporDto> urunGirdiSayilari();
+
+    @Query("select count(u.id) from Urun u where u.taslak=false ")
+    Object urunSayisi();
 
     @EntityGraph(attributePaths = {"idariKayitlar"})
     List<Urun> findAllWithIdariKayitIdBy();

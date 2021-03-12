@@ -10,7 +10,6 @@ import tr.gov.tuik.urunenvanteri.repository.UrunRepository;
 import tr.gov.tuik.urunenvanteri.security.Admin;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
@@ -20,7 +19,7 @@ public class UrunResource {
     private final UrunMapper urunMapper;
     private final UrunKurulusMapper urunKurulusMapper;
 
-    public UrunResource(UrunRepository urunRepository,UrunKurulusMapper urunKurulusMapper, UrunMapper urunMapper) {
+    public UrunResource(UrunRepository urunRepository, UrunKurulusMapper urunKurulusMapper, UrunMapper urunMapper) {
         this.urunRepository = urunRepository;
         this.urunMapper = urunMapper;
         this.urunKurulusMapper = urunKurulusMapper;
@@ -87,6 +86,9 @@ public class UrunResource {
         return urunRepository.urunGirdiSayilari();
     }
 
+    @GetMapping("sayi")
+    public Object urunSayisi(){ return urunRepository.urunSayisi(); }
+
     @GetMapping("kaynak-kurumlar")
     public Stream<UrunKaynakKurumDto> urunKaynakKurumlari() {
         return urunRepository.findAllWithIdariKayitBy()
@@ -111,9 +113,12 @@ public class UrunResource {
                 .stream()
                 .map(UrunAnketMapper::toDto);
     }
+
+
     @Admin
     @GetMapping("{id}/loglar")
     public List<Revision<Integer, Urun>> urunLoglari(@PathVariable Long id) {
         return urunRepository.findRevisions(id).getContent();
     }
+
 }
