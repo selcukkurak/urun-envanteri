@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Audited
 @Table(name = "kolon_bilgileri")
-public class KolonBilgileri extends AuditableEntity{
+public class KolonBilgisi extends AuditableEntity{
 
     @Id
     private Long id;
@@ -30,5 +30,5 @@ public class KolonBilgileri extends AuditableEntity{
     private String viewKolonAdi;
 
     @ManyToOne
-    private TabloBilgileri tabloBilgileri;
+    private TabloBilgisi tabloBilgisi;
 }

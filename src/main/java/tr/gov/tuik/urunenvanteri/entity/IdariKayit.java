@@ -102,7 +102,7 @@ public class IdariKayit extends AuditableEntity {
     private List<IletisimKisi> iletisimKisileri = new ArrayList<>();
 
     @OneToMany(mappedBy = "idariKayit")
-    private List<TabloBilgileri> tabloBilgileri = new ArrayList<>();
+    private List<TabloBilgisi> tabloBilgileri = new ArrayList<>();
 
 
 }

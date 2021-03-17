@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Audited
 @Table(name = "tablo_bilgileri")
-public class TabloBilgileri extends AuditableEntity {
+public class TabloBilgisi extends AuditableEntity {
 
     @Id
     private Long id;
@@ -26,8 +26,8 @@ public class TabloBilgileri extends AuditableEntity {
     @Column(name = "view_adi")
     private String viewAdi;
 
-    @OneToMany(mappedBy = "tabloBilgileri")
-    private List<KolonBilgileri> kolonBilgileri = new ArrayList<>();
+    @OneToMany(mappedBy = "tabloBilgisi")
+    private List<KolonBilgisi> kolonBilgileri = new ArrayList<>();
 
     @ManyToOne
     private IdariKayit idariKayit;
