@@ -26,6 +26,9 @@ public class KolonBilgileri extends AuditableEntity{
     @Column(name = "iliskili_tablo_kolon_adi")
     private String iliskiliTabloKolonAdi;
 
+    @Column(name = "view_kolon_adi")
+    private String viewKolonAdi;
+
     @ManyToOne
     private TabloBilgileri tabloBilgileri;
 }
