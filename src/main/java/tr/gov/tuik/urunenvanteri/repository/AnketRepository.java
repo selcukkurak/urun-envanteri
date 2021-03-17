@@ -13,5 +13,5 @@ public interface AnketRepository extends JpaRepository<Anket, String> {
     List<Anket> findAllBy();
 
     @Query("select count(a.id) as anket_sayisi from Anket a where a.taslak=false ")
-    Object anketSayisi();
+    Long anketSayisi();
 }

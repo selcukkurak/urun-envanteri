@@ -16,5 +16,5 @@ public interface IdariKayitRepository extends JpaRepository<IdariKayit, String> 
     List<IdariKayit> findTablolarBy();
 
     @Query("select count(i.id) as kayit_sayisi from IdariKayit i where i.taslak=false")
-    Object kayitSayisi();
+    Long kayitSayisi();
 }

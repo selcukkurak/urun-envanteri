@@ -12,8 +12,8 @@ public interface ReferansRepository extends JpaRepository<Referans, Long> {
     List<Referans> findByTipi(ReferansTipi tipi);
 
     @Query("select count(r.id) as kurum_sayisi from Referans r where r.tipi='KAYNAK_KURUM'")
-    Object kurumSayisi();
+    Long kurumSayisi();
 
     @Query("select count(r.id) as kurulus_sayisi from Referans r where r.tipi='KURULUS'")
-    Object kurulusSayisi();
+    Long kurulusSayisi();
 }

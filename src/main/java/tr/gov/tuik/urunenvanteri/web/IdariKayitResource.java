@@ -68,6 +68,4 @@ public class IdariKayitResource {
                 .map(tabloBilgileriMapper::toDto);
     }
 
-    @GetMapping("sayi")
-    public Object kayitSayisi(){ return idariKayitRepository.kayitSayisi(); }
 }

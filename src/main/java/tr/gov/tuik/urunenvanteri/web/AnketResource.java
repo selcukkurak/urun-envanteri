@@ -25,8 +25,6 @@ public class AnketResource {
                 .stream()
                 .map(anketMapper::toDto);
     }
-    @GetMapping("sayi")
-    public Object anketSayisi(){ return anketRepository.anketSayisi(); }
 
     @PostMapping("ekle")
     public Stream<AnketDto> anketEkle(@RequestBody AnketDto anketDto){

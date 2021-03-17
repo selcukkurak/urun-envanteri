@@ -29,7 +29,7 @@ public interface UrunRepository extends JpaRepository<Urun, Long>, RevisionRepos
     List<UrunRaporDto> urunGirdiSayilari();
 
     @Query("select count(u.id) from Urun u where u.taslak=false ")
-    Object urunSayisi();
+    Long urunSayisi();
 
     @EntityGraph(attributePaths = {"idariKayitlar"})
     List<Urun> findAllWithIdariKayitIdBy();

@@ -86,8 +86,6 @@ public class UrunResource {
         return urunRepository.urunGirdiSayilari();
     }
 
-    @GetMapping("sayi")
-    public Object urunSayisi(){ return urunRepository.urunSayisi(); }
 
     @GetMapping("kaynak-kurumlar")
     public Stream<UrunKaynakKurumDto> urunKaynakKurumlari() {
