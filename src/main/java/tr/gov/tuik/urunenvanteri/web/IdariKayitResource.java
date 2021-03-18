@@ -51,6 +51,11 @@ public class IdariKayitResource {
                 .map(idariKayitTabloMapper::toDto);
     }
 
+    @GetMapping("sayi")
+    public Long kayitSayisi(){
+        return idariKayitRepository.kayitSayisi();
+    }
+
     @GetMapping("{id}/iletisim-kisileri")
     public Stream<IletisimKisiDto> idariKayitIletisimKisileri(@PathVariable String id) {
         return idariKayitRepository.findById(id)

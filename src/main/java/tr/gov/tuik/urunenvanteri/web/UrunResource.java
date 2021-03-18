@@ -74,6 +74,11 @@ public class UrunResource {
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
     }
 
+    @GetMapping("sayi")
+    public Long urunSayisi(){
+        return urunRepository.urunSayisi();
+    }
+
     @GetMapping("baglantilar")
     public Stream<UrunBagliUrunlerDto> urunBaglantilari() {
         return urunRepository.findWithUrunlerByTaslakFalse()
