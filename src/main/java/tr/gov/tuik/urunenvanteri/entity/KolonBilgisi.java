@@ -10,7 +10,6 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Audited
-@Table(name = "kolon_bilgileri")
 public class KolonBilgisi extends AuditableEntity{
 
     @Id
@@ -20,13 +19,10 @@ public class KolonBilgisi extends AuditableEntity{
 
     private String aciklama;
 
-    @Column(name = "key_kontrol")
     private Long keyKontrol;
 
-    @Column(name = "iliskili_tablo_kolon_adi")
     private String iliskiliTabloKolonAdi;
 
-    @Column(name = "view_kolon_adi")
     private String viewKolonAdi;
 
     @ManyToOne

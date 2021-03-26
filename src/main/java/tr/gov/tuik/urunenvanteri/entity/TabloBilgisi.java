@@ -12,7 +12,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Audited
-@Table(name = "tablo_bilgileri")
 public class TabloBilgisi extends AuditableEntity {
 
     @Id
@@ -23,7 +22,6 @@ public class TabloBilgisi extends AuditableEntity {
     private String aciklama;
 
 
-    @Column(name = "view_adi")
     private String viewAdi;
 
     @OneToMany(mappedBy = "tabloBilgisi")
