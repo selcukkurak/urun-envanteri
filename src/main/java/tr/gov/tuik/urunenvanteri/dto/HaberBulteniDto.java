@@ -12,6 +12,7 @@ import java.util.List;
 public class HaberBulteniDto extends AuditableEntity {
     private String id;
     private String adi;
-
+    private String donemi;
+    private Long sonYayinId;
     private List<HaberBulteniTabloDto> tablolar = new ArrayList<>();
 }
