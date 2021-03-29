@@ -31,6 +31,10 @@ public class UrunResource {
                 .stream()
                 .map(urunMapper::toDto);
     }
+    @PostMapping("yetkisiz")
+    public Urun urunEkleme(@RequestBody UrunDto urunDto){
+        return urunRepository.save(urunMapper.toEntity(urunDto));
+    }
 
     @GetMapping(params = "onayli")
     public Stream<UrunDto> onayliUrunler(@RequestParam boolean onayli) {
