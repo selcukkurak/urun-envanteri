@@ -1,9 +1,6 @@
 package tr.gov.tuik.urunenvanteri.web;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.IdariKayitDto;
 import tr.gov.tuik.urunenvanteri.dto.IdariKayitTabloDto;
 import tr.gov.tuik.urunenvanteri.dto.TabloBilgileriDto;
@@ -71,6 +68,12 @@ public class IdariKayitResource {
                 .map(Collection::stream)
                 .orElseThrow(() -> new ResourceNotFoundException("IdariKayit", "id", id))
                 .map(tabloBilgileriMapper::toDto);
+    }
+
+    @PostMapping()
+    public Stream<IdariKayitDto> tabloEkle(@RequestBody IdariKayitDto kayitDto){
+        idariKayitRepository.save(idariKayitMapper.toEntity(kayitDto));
+        return idariKayitlar();
     }
 
 }
