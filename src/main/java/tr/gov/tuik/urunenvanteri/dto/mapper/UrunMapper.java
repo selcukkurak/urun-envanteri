@@ -7,6 +7,10 @@ import org.mapstruct.Named;
 import tr.gov.tuik.urunenvanteri.dto.UrunBagliUrunlerDto;
 import tr.gov.tuik.urunenvanteri.dto.UrunDetayDto;
 import tr.gov.tuik.urunenvanteri.dto.UrunDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunGirdiCiktiBilgileriDto;
+import tr.gov.tuik.urunenvanteri.entity.Anket;
+import tr.gov.tuik.urunenvanteri.entity.HaberBulteni;
+import tr.gov.tuik.urunenvanteri.entity.IdariKayit;
 import tr.gov.tuik.urunenvanteri.entity.Urun;
 
 import java.util.List;
@@ -36,4 +40,21 @@ public interface UrunMapper extends GenericMapper<Urun, UrunDto> {
                 .map(Urun::getId)
                 .collect(Collectors.toList());
     }
+
+
+    @Mappings({
+            @Mapping(target = "idariKayitlar", source = "idariKayitlar"),
+            @Mapping(target = "anketler", source = "anketler"),
+            @Mapping(target = "urunler", source = "urunler")
+    })
+    UrunGirdiCiktiBilgileriDto toBilgilerDto(Urun urun);
+
+
+    @Mappings({
+            @Mapping(target = "idariKayitlar", source = "idariKayitlar"),
+            @Mapping(target = "anketler", source = "anketler", qualifiedByName = "anketToId"),
+            @Mapping(target = "urunler", source = "urunler", qualifiedByName = "urunToId")
+    })
+    Urun toBilgilerEntity(UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto);
+
 }
