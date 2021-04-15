@@ -9,4 +9,8 @@ public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String entity, String property, Object value) {
         super(String.format("%s = %s olan %s nesnesi bulunamadı", property, value, entity).toString());
     }
+
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
 }
