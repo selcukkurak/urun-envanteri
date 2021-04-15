@@ -1,9 +1,12 @@
 package tr.gov.tuik.urunenvanteri.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
 
 @Data
-public class AnketDto {
+@EqualsAndHashCode(callSuper = false)
+public class AnketDto extends AuditableEntity {
     private String id;
     private String adi;
     private String csa;
