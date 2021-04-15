@@ -41,6 +41,12 @@ public class IdariKayitResource {
                 .stream()
                 .map(idariKayitMapper::toDto);
     }
+
+    @PostMapping
+    public Stream<IdariKayitDto> idariKayitEkle(@RequestBody IdariKayitDto idariKayitDto){
+        idariKayitRepository.save(idariKayitMapper.toEntity(idariKayitDto));
+        return idariKayitlar();
+    }
     @GetMapping("tablolar")
     public Stream<IdariKayitTabloDto> idariKayitTablolar() {
         return idariKayitRepository.findTablolarBy()
@@ -70,9 +76,23 @@ public class IdariKayitResource {
                 .map(tabloBilgileriMapper::toDto);
     }
 
-    @PostMapping()
-    public Stream<IdariKayitDto> tabloEkle(@RequestBody IdariKayitDto kayitDto){
-        idariKayitRepository.save(idariKayitMapper.toEntity(kayitDto));
+    @PutMapping("guncelle/{id}")
+    public Stream<IdariKayitDto> idariKayitGuncelle(@PathVariable String id, @RequestBody IdariKayitDto idariKayitDto){
+        IdariKayit idariKayit = idariKayitRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("İdari Kayıt", "id", id));
+        if(idariKayit.getId().equals(id)){
+            idariKayitRepository.save(idariKayitMapper.toEntity(idariKayitDto));
+        }
+        return idariKayitlar();
+    }
+
+    @DeleteMapping("sil/{id}")
+    public Stream<IdariKayitDto> idariKayitSil(@PathVariable String id){
+        IdariKayit idariKayit = idariKayitRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("İdari Kayıt", "id", id));
+        if(idariKayit.getId().equals(id)){
+            idariKayitRepository.delete(idariKayit);
+        }
         return idariKayitlar();
     }
 

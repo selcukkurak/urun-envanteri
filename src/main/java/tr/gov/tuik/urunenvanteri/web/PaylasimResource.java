@@ -1,15 +1,12 @@
 package tr.gov.tuik.urunenvanteri.web;
 
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import tr.gov.tuik.urunenvanteri.dto.PaylasimDto;
 import tr.gov.tuik.urunenvanteri.dto.PaylasimKurulusDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.PaylasimKurulusMapper;
+import tr.gov.tuik.urunenvanteri.dto.mapper.PaylasimMapper;
 import tr.gov.tuik.urunenvanteri.repository.PaylasimRepository;
 
-import java.util.List;
 import java.util.stream.Stream;
 @RestController
 @RequestMapping("/api/paylasimlar")
@@ -29,4 +26,16 @@ public class PaylasimResource {
                 .stream()
                 .map(paylasimKurulusMapper::toDto);
     }
+//    @GetMapping
+//    public Stream<PaylasimDto> tumPaylasimAlanlariniGetir(){
+//        return paylasimRepository.findAllBy()
+//                .stream()
+//                .map(paylasimMapper::toDto);
+//    }
+
+
+//    @PostMapping
+//    public void paylasimEkle(@RequestBody PaylasimDto paylasimDto){
+//        paylasimRepository.save(paylasimMapper.toEntity(paylasimDto));
+//    }
  }

@@ -9,6 +9,7 @@ import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.UrunRepository;
 import tr.gov.tuik.urunenvanteri.security.Admin;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -32,8 +33,11 @@ public class UrunResource {
                 .map(urunMapper::toDto);
     }
     @PostMapping("yetkisiz")
-    public Urun urunEkleme(@RequestBody UrunDto urunDto){
-        return urunRepository.save(urunMapper.toEntity(urunDto));
+    public Stream<UrunDto> urunEkleme(@RequestBody UrunDto urunDto){
+        Urun urun = new Urun();
+        urun.setTaslak(true);
+        urunRepository.save(urunMapper.toEntity(urunDto));
+        return urunler();
     }
 
     @GetMapping(params = "onayli")
@@ -57,6 +61,7 @@ public class UrunResource {
         return urunMapper.toDto(urunRepository.save(urun));
     }
 
+
     @Admin
     @PutMapping("{id}")
     public UrunDto urunGuncelle(@PathVariable Long id, @RequestBody UrunDto payload) {
@@ -69,6 +74,27 @@ public class UrunResource {
         urun.setBirimId(payload.getBirimId());
 
         return urunMapper.toDto(urunRepository.save(urun));
+    }
+
+    @PutMapping("guncelle/{id}")
+    public Stream<UrunDto> urunuGuncelle(@PathVariable Long id, @RequestBody UrunDto urunDto) {
+        Urun urun = urunRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
+        if(urun.getId().equals(id)) {
+            urunRepository.save(urunMapper.toEntity(urunDto));
+        }
+        return urunler();
+
+    }
+
+    @PutMapping("version/{id}")
+    public Stream<UrunDto> urunSil(@PathVariable Long id){
+        Urun urun = urunRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
+        if(urun.getId().equals(id)) {
+            urun.setTaslak(false);
+        }
+        return urunler();
     }
 
     @GetMapping("{id}")
@@ -119,6 +145,17 @@ public class UrunResource {
         return urunRepository.findAllWithAnketIdBy()
                 .stream()
                 .map(UrunAnketMapper::toDto);
+    }
+
+    @GetMapping("bilgi")
+    public Stream<UrunGirdiCiktiBilgileriDto> urunBilgileri() {
+        return urunRepository.findAll()
+                .stream()
+                .map(urunMapper::toBilgilerDto);
+    }
+    @PostMapping("bilgi-ekle")
+    public Urun urunBilgiEkle(@RequestBody UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto){
+        return urunRepository.save(urunMapper.toBilgilerEntity(urunGirdiCiktiBilgileriDto));
     }
 
 

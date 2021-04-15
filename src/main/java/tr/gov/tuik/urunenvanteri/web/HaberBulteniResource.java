@@ -3,13 +3,10 @@ package tr.gov.tuik.urunenvanteri.web;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.client.TakvimClient;
 import tr.gov.tuik.urunenvanteri.client.WebIcerikClient;
-import tr.gov.tuik.urunenvanteri.dto.Bulten;
-import tr.gov.tuik.urunenvanteri.dto.HaberBulteniDto;
-import tr.gov.tuik.urunenvanteri.dto.MetaveriDto;
-import tr.gov.tuik.urunenvanteri.dto.mapper.BultenMapper;
-import tr.gov.tuik.urunenvanteri.dto.mapper.HaberBulteniMapper;
-import tr.gov.tuik.urunenvanteri.dto.mapper.MetaveriMapper;
+import tr.gov.tuik.urunenvanteri.dto.*;
+import tr.gov.tuik.urunenvanteri.dto.mapper.*;
 import tr.gov.tuik.urunenvanteri.entity.HaberBulteni;
+import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.HaberBulteniRepository;
 
 import java.util.List;
@@ -64,5 +61,23 @@ public class HaberBulteniResource {
         return bultenleriGetir();
     }
 
+    @PutMapping("guncelle/{id}")
+    public Stream<HaberBulteniDto> bultenGuncelle(@PathVariable String id, @RequestBody HaberBulteniDto haberBulteniDto){
+        HaberBulteni haberBulteni = haberBulteniRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Haber Bülteni", "id", id));
+        if (haberBulteni.getId().equals(id)){
+            haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto));
+        }
+        return bultenleriGetir();
+    }
 
+    @DeleteMapping("sil/{id}")
+    public Stream<HaberBulteniDto> bultenSil(@PathVariable String id){
+        HaberBulteni haberBulteni = haberBulteniRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Haber Bülteni", "id", id));
+        if (haberBulteni.getId().equals(id)){
+            haberBulteniRepository.delete(haberBulteni);
+        }
+        return bultenleriGetir();
+    }
 }
