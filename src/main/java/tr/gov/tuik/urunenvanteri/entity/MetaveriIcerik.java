@@ -13,6 +13,7 @@ import javax.persistence.*;
 public class MetaveriIcerik extends AuditableEntity{
     @Id
     private Long id;
+
     @ManyToOne
     private MetaveriKonu mv;
 
