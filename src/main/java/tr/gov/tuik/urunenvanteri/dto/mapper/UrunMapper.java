@@ -52,8 +52,8 @@ public interface UrunMapper extends GenericMapper<Urun, UrunDto> {
 
     @Mappings({
             @Mapping(target = "idariKayitlar", source = "idariKayitlar"),
-            @Mapping(target = "anketler", source = "anketler", qualifiedByName = "anketToId"),
-            @Mapping(target = "urunler", source = "urunler", qualifiedByName = "urunToId")
+            @Mapping(target = "anketler", source = "anketler"),
+            @Mapping(target = "urunler", source = "urunler")
     })
     Urun toBilgilerEntity(UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto);
 

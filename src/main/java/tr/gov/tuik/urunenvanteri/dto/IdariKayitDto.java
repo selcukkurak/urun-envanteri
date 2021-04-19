@@ -46,4 +46,5 @@ public class IdariKayitDto extends AuditableEntity {
     private ReferansDto birimDuzeyi;
     private String birimDuzeyiDigerAciklama;
     private List<IletisimKisiDto> iletisimKisileri = new ArrayList<>();
+    private List<TabloBilgileriDto> tablolar = new ArrayList<>();
 }
