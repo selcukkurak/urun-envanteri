@@ -17,14 +17,10 @@ import java.util.stream.Stream;
 public class HaberBulteniResource {
     private final WebIcerikClient webIcerikClient;
     private final TakvimClient takvimClient;
-    private final HaberBulteniRepository haberBulteniRepository;
-    private final HaberBulteniMapper haberBulteniMapper;
 
-    public HaberBulteniResource(WebIcerikClient webIcerikClient, TakvimClient takvimClient, HaberBulteniRepository haberBulteniRepository, HaberBulteniMapper haberBulteniMapper) {
+    public HaberBulteniResource(WebIcerikClient webIcerikClient, TakvimClient takvimClient) {
         this.webIcerikClient = webIcerikClient;
         this.takvimClient = takvimClient;
-        this.haberBulteniRepository = haberBulteniRepository;
-        this.haberBulteniMapper = haberBulteniMapper;
     }
 
     @GetMapping
@@ -48,36 +44,4 @@ public class HaberBulteniResource {
 
     }
 
-    @GetMapping("yeni")
-    public Stream<HaberBulteniDto> bultenleriGetir() {
-        return haberBulteniRepository.getAllBy()
-                .stream()
-                .map(haberBulteniMapper::toDto);
-    }
-
-    @PostMapping
-    public Stream<HaberBulteniDto> bultenEkle(@RequestBody HaberBulteniDto haberBulteniDto) {
-        haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto));
-        return bultenleriGetir();
-    }
-
-    @PutMapping("guncelle/{id}")
-    public Stream<HaberBulteniDto> bultenGuncelle(@PathVariable String id, @RequestBody HaberBulteniDto haberBulteniDto){
-        HaberBulteni haberBulteni = haberBulteniRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Haber Bülteni", "id", id));
-        if (haberBulteni.getId().equals(id)){
-            haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto));
-        }
-        return bultenleriGetir();
-    }
-
-    @DeleteMapping("sil/{id}")
-    public Stream<HaberBulteniDto> bultenSil(@PathVariable String id){
-        HaberBulteni haberBulteni = haberBulteniRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Haber Bülteni", "id", id));
-        if (haberBulteni.getId().equals(id)){
-            haberBulteniRepository.delete(haberBulteni);
-        }
-        return bultenleriGetir();
-    }
 }
