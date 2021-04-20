@@ -25,10 +25,14 @@ public class HaberBulteni extends AuditableEntity {
 
     private Long sonYayinId;
 
+    private Boolean taslak;
+
     @OneToMany(mappedBy = "bulten")
     public List<HaberBulteniTablo> tablolar = new ArrayList<>();
 
     @OneToMany(mappedBy = "bulten")
     public List<HaberBulteniIstatikselTablo> istatikselTablolar = new ArrayList<>();
+
+
 
 }

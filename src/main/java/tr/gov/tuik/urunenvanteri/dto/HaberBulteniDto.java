@@ -14,5 +14,6 @@ public class HaberBulteniDto extends AuditableEntity {
     private String adi;
     private String donemi;
     private Long sonYayinId;
+    private Boolean taslak;
     private List<HaberBulteniTabloDto> tablolar = new ArrayList<>();
 }
