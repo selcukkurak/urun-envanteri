@@ -1,6 +1,8 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import org.springframework.data.history.Revision;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.*;
 import tr.gov.tuik.urunenvanteri.dto.mapper.*;
@@ -32,12 +34,12 @@ public class UrunResource {
                 .stream()
                 .map(urunMapper::toDto);
     }
+
     @PostMapping("yetkisiz")
-    public Stream<UrunDto> urunEkleme(@RequestBody UrunDto urunDto){
+    public ResponseEntity<Urun> urunEkleme(@RequestBody UrunDto urunDto) {
         Urun urun = new Urun();
         urun.setTaslak(true);
-        urunRepository.save(urunMapper.toEntity(urunDto));
-        return urunler();
+        return new ResponseEntity<>(urunRepository.save(urunMapper.toEntity(urunDto)), HttpStatus.OK);
     }
 
     @GetMapping(params = "onayli")
@@ -77,18 +79,15 @@ public class UrunResource {
     }
 
     @PutMapping("guncelle/{id}")
-    public Stream<UrunDto> urunuGuncelle(@PathVariable Long id, @RequestBody UrunDto urunDto) {
+    public ResponseEntity<Urun> urunuGuncelle(@PathVariable Long id, @RequestBody UrunDto urunDto) {
         Urun urun = urunRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
-        if(urun.getId().equals(id)) {
-            urunRepository.save(urunMapper.toEntity(urunDto));
-        }
-        return urunler();
+        return new ResponseEntity<>(urunRepository.save(urunMapper.toEntity(urunDto)), HttpStatus.OK);
 
     }
 
     @PutMapping("version/{id}")
-    public Stream<UrunDto> urunSil(@PathVariable Long id){
+    public Stream<UrunDto> urunSil(@PathVariable Long id) {
         Urun urun = urunRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
         urun.setTaslak(true);
@@ -103,7 +102,7 @@ public class UrunResource {
     }
 
     @GetMapping("sayi")
-    public Long urunSayisi(){
+    public Long urunSayisi() {
         return urunRepository.urunSayisi();
     }
 
@@ -126,18 +125,21 @@ public class UrunResource {
                 .stream()
                 .map(UrunKaynakKurumMapper::toDto);
     }
+
     @GetMapping("kuruluslar")
     public Stream<UrunKurulusDto> urunKuruluslari() {
         return urunRepository.findAllWithPaylasimlarBy()
                 .stream()
                 .map(urunKurulusMapper::toDto);
     }
+
     @GetMapping("idari-kayitlar")
     public Stream<UrunIdariKayitDto> urunIdariKayitlari() {
         return urunRepository.findAllWithIdariKayitIdBy()
                 .stream()
                 .map(UrunIdariKayitMapper::toDto);
     }
+
     @GetMapping("anketler")
     public Stream<UrunAnketDto> urunAnketleri() {
         return urunRepository.findAllWithAnketIdBy()
@@ -151,8 +153,9 @@ public class UrunResource {
                 .stream()
                 .map(urunMapper::toBilgilerDto);
     }
+
     @PostMapping("bilgi-ekle")
-    public Urun urunBilgiEkle(@RequestBody UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto){
+    public Urun urunBilgiEkle(@RequestBody UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto) {
         return urunRepository.save(urunMapper.toBilgilerEntity(urunGirdiCiktiBilgileriDto));
     }
 

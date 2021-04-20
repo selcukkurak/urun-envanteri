@@ -1,5 +1,7 @@
 package tr.gov.tuik.urunenvanteri.web;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.*;
 import tr.gov.tuik.urunenvanteri.dto.mapper.IdariKayitMapper;
@@ -47,8 +49,8 @@ public class IdariKayitResource {
         return idariKayitlar();
     }
     @PostMapping
-    public IdariKayit idariKayitEkle(@RequestBody IdariKayitDto idariKayitDto){
-        return idariKayitRepository.save(idariKayitMapper.toEntity(idariKayitDto));
+    public ResponseEntity<IdariKayit> idariKayitEkle(@RequestBody IdariKayitDto idariKayitDto){
+        return new ResponseEntity<>(idariKayitRepository.save(idariKayitMapper.toEntity(idariKayitDto)), HttpStatus.OK);
     }
     @GetMapping("tablolar")
     public Stream<IdariKayitTabloDto> idariKayitTablolar() {
