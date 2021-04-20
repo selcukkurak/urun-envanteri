@@ -91,9 +91,7 @@ public class UrunResource {
     public Stream<UrunDto> urunSil(@PathVariable Long id){
         Urun urun = urunRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
-        if(urun.getId().equals(id)) {
-            urun.setTaslak(false);
-        }
+        urun.setTaslak(true);
         return urunler();
     }
 

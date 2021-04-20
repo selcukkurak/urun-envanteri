@@ -43,14 +43,12 @@ public class AnketResource {
         return anketler();
     }
 
-    @DeleteMapping("sil/{id}")
-    public Stream<AnketDto> deleteEmployee(@PathVariable String id)
+    @PutMapping("version/{id}")
+    public Stream<AnketDto> anketSil(@PathVariable String id)
             throws ResourceNotFoundException {
         Anket anket = anketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Bu id ile ilişkili anket bulunmamaktadır :: " + id));
-        if(anket.getId().equals(id)){
-            anketRepository.delete(anket);
-        }
+        anket.setTaslak(true);
         return anketler();
 
     }

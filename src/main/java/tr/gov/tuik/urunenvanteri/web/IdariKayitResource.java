@@ -1,15 +1,13 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import org.springframework.web.bind.annotation.*;
-import tr.gov.tuik.urunenvanteri.dto.IdariKayitDto;
-import tr.gov.tuik.urunenvanteri.dto.IdariKayitTabloDto;
-import tr.gov.tuik.urunenvanteri.dto.TabloBilgileriDto;
+import tr.gov.tuik.urunenvanteri.dto.*;
 import tr.gov.tuik.urunenvanteri.dto.mapper.IdariKayitMapper;
-import tr.gov.tuik.urunenvanteri.dto.IletisimKisiDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.IdariKayitTabloMapper;
 import tr.gov.tuik.urunenvanteri.dto.mapper.IletisimKisiMapper;
 import tr.gov.tuik.urunenvanteri.dto.mapper.TabloBilgileriMapper;
 import tr.gov.tuik.urunenvanteri.entity.IdariKayit;
+import tr.gov.tuik.urunenvanteri.entity.Urun;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.IdariKayitRepository;
 
@@ -41,7 +39,13 @@ public class IdariKayitResource {
                 .stream()
                 .map(idariKayitMapper::toDto);
     }
-
+    @PutMapping("version/{id}")
+    public Stream<IdariKayitDto> kayitSil(@PathVariable String id){
+        IdariKayit kayit = idariKayitRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("İdari Kayıt", "id", id));
+        kayit.setTaslak(true);
+        return idariKayitlar();
+    }
     @PostMapping
     public IdariKayit idariKayitEkle(@RequestBody IdariKayitDto idariKayitDto){
         return idariKayitRepository.save(idariKayitMapper.toEntity(idariKayitDto));
