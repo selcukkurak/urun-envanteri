@@ -1,6 +1,9 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.HaberBulteniDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.HaberBulteniMapper;
@@ -26,18 +29,15 @@ public class HaberBulteniYeniResource {
     }
 
     @PostMapping
-    public HaberBulteni bultenEkle(@RequestBody HaberBulteniDto haberBulteniDto) {
-        return haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto));
+    public ResponseEntity<HaberBulteni> bultenEkle(@RequestBody HaberBulteniDto haberBulteniDto) {
+        return new ResponseEntity<>(haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto)), HttpStatus.OK);
     }
 
     @PutMapping("guncelle/{id}")
-    public Stream<HaberBulteniDto> bultenGuncelle(@PathVariable String id, @RequestBody HaberBulteniDto haberBulteniDto){
+    public ResponseEntity<HaberBulteni> bultenGuncelle(@PathVariable String id, @RequestBody HaberBulteniDto haberBulteniDto){
         HaberBulteni haberBulteni = haberBulteniRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Haber Bülteni", "id", id));
-        if (haberBulteni.getId().equals(id)){
-            haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto));
-        }
-        return bultenleriGetir();
+        return new ResponseEntity<>(haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto)), HttpStatus.OK);
     }
 
     @DeleteMapping("sil/{id}")
