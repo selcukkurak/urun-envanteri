@@ -18,6 +18,7 @@ public class IdariKayitDto extends AuditableEntity {
     private Integer kaynakKurumId;
     private String kaynakKurumAdi;
     private String kaynakBirimAdi;
+    private Boolean taslak;
     private String birimId;
     private String transferdenSorumluBirimId;
     private String epostaGruplari;
