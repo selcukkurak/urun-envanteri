@@ -1,4 +1,4 @@
-FROM adoptopenjdk:11-jre-hotspot
+FROM dockerhub.tuik.gov.tr/tuik/jre11-tuikcert
 VOLUME /tmp
 EXPOSE 8080
 
