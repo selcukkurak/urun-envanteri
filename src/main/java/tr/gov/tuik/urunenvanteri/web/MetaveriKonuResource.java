@@ -1,8 +1,12 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.MetaveriKonuDto;
+import tr.gov.tuik.urunenvanteri.dto.PaylasimDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunGirdiCiktiBilgileriDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.MetaveriKonuMapper;
 import tr.gov.tuik.urunenvanteri.entity.MetaveriKonu;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
@@ -33,11 +37,12 @@ public class MetaveriKonuResource {
     }
 
     @PostMapping
-    public Stream<MetaveriKonuDto> metaveriEkle(@RequestBody MetaveriKonuDto metaveriKonuDto){
-        metaveriKonuRepository.save(
-                metaveriKonuMapper.toEntity(metaveriKonuDto)
-        );
-        return metaveriler();
+    public ResponseEntity<?> metaveriEkle(@RequestBody UrunGirdiCiktiBilgileriDto dto){
+
+        for (MetaveriKonuDto konuDto: dto.getMetaveriler()){
+            metaveriKonuRepository.save(metaveriKonuMapper.toEntity(konuDto));
+        }
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("guncelle/{id}")
@@ -50,14 +55,6 @@ public class MetaveriKonuResource {
         return metaveriler();
     }
 
-    @DeleteMapping("sil/{id}")
-    public Stream<MetaveriKonuDto> metaveriSil(@PathVariable Long id){
-        MetaveriKonu metaveriKonu = metaveriKonuRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("metaveri", "id" ,id));
-        if(metaveriKonu.getId().equals(id)){
-            metaveriKonuRepository.delete(metaveriKonu);
-        }
-        return metaveriler();
-    }
+
 
 }

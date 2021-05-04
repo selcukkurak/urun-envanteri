@@ -1,10 +1,9 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.HaberBulteniTabloDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.HaberBulteniTabloMapper;
 import tr.gov.tuik.urunenvanteri.repository.HaberBulteniTabloRepository;

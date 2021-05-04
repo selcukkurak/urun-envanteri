@@ -1,16 +1,22 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.HaberBulteniDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunGirdiCiktiBilgileriDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.HaberBulteniMapper;
 import tr.gov.tuik.urunenvanteri.entity.HaberBulteni;
+import tr.gov.tuik.urunenvanteri.entity.Urun;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.HaberBulteniRepository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
@@ -38,6 +44,17 @@ public class HaberBulteniYeniResource {
         HaberBulteni haberBulteni = haberBulteniRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Haber Bülteni", "id", id));
         return new ResponseEntity<>(haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto)), HttpStatus.OK);
+    }
+
+    @PutMapping("urun")
+    private List<HaberBulteni> urunIdGuncelle(@RequestBody List<HaberBulteniDto> dtoList) {
+        List<HaberBulteni> haberBultenleri = new ArrayList<>();
+        for (HaberBulteniDto dto : dtoList) {
+            HaberBulteni haberBulteni = haberBulteniRepository.findById(dto.getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("id", "haber bülteni" , dto.getId()));
+            haberBulteniRepository.save(haberBulteniMapper.toEntity(dto));
+        }
+        return haberBultenleri;
     }
 
     @DeleteMapping("sil/{id}")

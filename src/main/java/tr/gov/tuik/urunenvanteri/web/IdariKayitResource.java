@@ -50,7 +50,9 @@ public class IdariKayitResource {
     }
     @PostMapping
     public ResponseEntity<IdariKayit> idariKayitEkle(@RequestBody IdariKayitDto idariKayitDto){
-        return new ResponseEntity<>(idariKayitRepository.save(idariKayitMapper.toEntity(idariKayitDto)), HttpStatus.OK);
+            IdariKayit idariKayit = new IdariKayit();
+            idariKayit.setTaslak(true);
+            return new ResponseEntity<>(idariKayitRepository.save(idariKayitMapper.toEntity(idariKayitDto)), HttpStatus.OK);
     }
     @GetMapping("tablolar")
     public Stream<IdariKayitTabloDto> idariKayitTablolar() {

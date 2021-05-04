@@ -1,11 +1,12 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.MetaveriIcerikDto;
+import tr.gov.tuik.urunenvanteri.dto.MetaveriKonuDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunGirdiCiktiBilgileriDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.MetaveriIcerikMapper;
 import tr.gov.tuik.urunenvanteri.repository.MetaveriIcerikRepository;
 
@@ -25,6 +26,16 @@ public class MetaveriIcerikResource {
                 .stream()
                 .map(metaveriIcerikMapper::toDto);
     }
+    @PostMapping
+    public ResponseEntity<?> icerikEkle(@RequestBody MetaveriKonuDto dto){
 
+        for (MetaveriIcerikDto icerikDto: dto.getIcerikler()){
+
+            metaveriIcerikRepository.save(metaveriIcerikMapper.toEntity(icerikDto));
+
+
+        }
+        return ResponseEntity.ok().build();
+    }
 
 }

@@ -1,5 +1,6 @@
 package tr.gov.tuik.urunenvanteri.web;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.history.Revision;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/urunler")
 public class UrunResource {
@@ -37,6 +39,7 @@ public class UrunResource {
 
     @PostMapping("yetkisiz")
     public ResponseEntity<Urun> urunEkleme(@RequestBody UrunDto urunDto) {
+        log.info("Ürün DTO: {}", urunDto);
         Urun urun = new Urun();
         urun.setTaslak(true);
         return new ResponseEntity<>(urunRepository.save(urunMapper.toEntity(urunDto)), HttpStatus.OK);
@@ -79,10 +82,10 @@ public class UrunResource {
     }
 
     @PutMapping("guncelle/{id}")
-    public ResponseEntity<Urun> urunuGuncelle(@PathVariable Long id, @RequestBody UrunDto urunDto) {
+    public ResponseEntity<Urun> urunuGuncelle(@PathVariable Long id, @RequestBody UrunDetayDto urunDetayDto) {
         Urun urun = urunRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
-        return new ResponseEntity<>(urunRepository.save(urunMapper.toEntity(urunDto)), HttpStatus.OK);
+        return new ResponseEntity<>(urunRepository.save(urunMapper.toDetayEntity(urunDetayDto)), HttpStatus.OK);
 
     }
 
@@ -154,8 +157,23 @@ public class UrunResource {
                 .map(urunMapper::toBilgilerDto);
     }
 
-    @PostMapping("bilgi-ekle")
-    public Urun urunBilgiEkle(@RequestBody UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto) {
+    @PutMapping("bilgi-ekle/{id}")
+    public ResponseEntity<?> urunBilgiEkle(@RequestBody UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto, @PathVariable Long id) {
+        Urun urun = urunRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
+        if(urun.getId().equals(id)){
+            urunRepository.save(urunMapper.toBilgilerEntity(urunGirdiCiktiBilgileriDto));
+            return ResponseEntity.ok().build();
+        }
+        else
+            return ResponseEntity.badRequest().build();
+
+    }
+
+    @PutMapping("bilgi-guncelle/{id}")
+    public Urun urunBilgiGuncelle(@PathVariable Long id, @RequestBody UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto){
+        Urun urun = urunRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
         return urunRepository.save(urunMapper.toBilgilerEntity(urunGirdiCiktiBilgileriDto));
     }
 

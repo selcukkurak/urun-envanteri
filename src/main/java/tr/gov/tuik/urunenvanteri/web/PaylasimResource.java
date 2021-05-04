@@ -1,15 +1,22 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.PaylasimDto;
 import tr.gov.tuik.urunenvanteri.dto.PaylasimKurulusDto;
+import tr.gov.tuik.urunenvanteri.dto.UrunGirdiCiktiBilgileriDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.PaylasimKurulusMapper;
 import tr.gov.tuik.urunenvanteri.dto.mapper.PaylasimMapper;
 import tr.gov.tuik.urunenvanteri.entity.Paylasim;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.PaylasimRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
@@ -20,6 +27,9 @@ public class PaylasimResource {
     private final PaylasimRepository paylasimRepository;
     private final PaylasimKurulusMapper paylasimKurulusMapper;
     private final PaylasimMapper paylasimMapper;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @GetMapping
     public Stream<PaylasimKurulusDto> paylasimlariGetir() {
@@ -36,11 +46,16 @@ public class PaylasimResource {
     }
 
     @PostMapping
-    public Paylasim paylasimEkle(@RequestBody PaylasimDto paylasimDto){
-        return paylasimRepository.save(
-                paylasimMapper.toEntity(paylasimDto)
-        );
+    public ResponseEntity<?> paylasimEkle(@RequestBody UrunGirdiCiktiBilgileriDto list) {
+
+        for (PaylasimDto dto : list.getPaylasimlar()) {
+            paylasimRepository.save(paylasimMapper.toEntity(dto));
+
+        }
+        return ResponseEntity.ok().build();
     }
+
+
 
     @PutMapping("guncelle/{id}")
     public Stream<PaylasimDto> paylasimGuncelle(@PathVariable Long id, @RequestBody PaylasimDto paylasimDto){
