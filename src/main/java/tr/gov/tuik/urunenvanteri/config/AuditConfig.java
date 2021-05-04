@@ -1,6 +1,5 @@
 package tr.gov.tuik.urunenvanteri.config;
 
-import com.sun.istack.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -17,14 +16,14 @@ import java.util.Optional;
 public class AuditConfig {
 
     @Bean
-    public AuditorAware<String> auditorProvider() {
+    public AuditorAware<Long> auditorProvider() {
         return new SpringSecurityAuditAwareImpl();
     }
 
-    public static class SpringSecurityAuditAwareImpl implements AuditorAware<String> {
+    public static class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
 
         @Override
-        public Optional<String> getCurrentAuditor() {
+        public Optional<Long> getCurrentAuditor() {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
             if (auth == null || !auth.isAuthenticated() || auth instanceof AnonymousAuthenticationToken) {
@@ -33,7 +32,7 @@ public class AuditConfig {
 
             Principal principal = (Principal) auth.getPrincipal();
 
-            return Optional.ofNullable(principal.getName());
+            return Optional.ofNullable(Long.valueOf(principal.getName()));
         }
     }
 }
