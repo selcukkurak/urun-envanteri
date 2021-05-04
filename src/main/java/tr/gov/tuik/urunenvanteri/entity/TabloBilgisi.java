@@ -15,6 +15,7 @@ import java.util.List;
 public class TabloBilgisi extends AuditableEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String adi;

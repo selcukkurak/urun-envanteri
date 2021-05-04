@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Audited
 public class MetaveriIcerik extends AuditableEntity{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne

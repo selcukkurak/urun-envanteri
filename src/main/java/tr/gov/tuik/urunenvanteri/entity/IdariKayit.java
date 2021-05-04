@@ -104,5 +104,7 @@ public class IdariKayit extends AuditableEntity {
     @OneToMany(mappedBy = "idariKayit")
     private List<TabloBilgisi> tabloBilgileri = new ArrayList<>();
 
+    @OneToMany(mappedBy = "kayit", cascade = CascadeType.ALL)
+    private List<Dosya> dosyalar = new ArrayList<>();
 
 }

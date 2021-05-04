@@ -44,7 +44,8 @@ public class Urun extends AuditableEntity {
     private boolean uretiliyor;
 
     @OneToMany(mappedBy = "urun")
-    List<UrunHaberBulteni> bultenler = new ArrayList<>();
+    List<HaberBulteni> bultenler = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "urun")
     List<Metodoloji> metodolojiler = new ArrayList<>();
