@@ -4,6 +4,9 @@ import org.mapstruct.Mapper;
 import tr.gov.tuik.urunenvanteri.dto.HaberBulteniDto;
 import tr.gov.tuik.urunenvanteri.entity.HaberBulteni;
 
-@Mapper(componentModel = "spring", uses = { HaberBulteniTabloMapper.class, HaberBulteniIstatikselTabloMapper.class })
+@Mapper(componentModel = "spring", uses = { HaberBulteniTabloMapper.class,
+        HaberBulteniIstatikselTabloMapper.class,
+        UrunMapper.class
+})
 public interface HaberBulteniMapper extends GenericMapper<HaberBulteni, HaberBulteniDto>{
 }

@@ -16,5 +16,11 @@ public class UrunGirdiCiktiBilgileriDto {
 
     private List<UrunDto>  urunler;
 
+    private List<PaylasimDto> paylasimlar;
+
+    private List<MetaveriKonuDto> metaveriler;
+
+    private List<HaberBulteniDto> bultenler;
+
 
 }

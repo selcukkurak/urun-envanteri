@@ -16,4 +16,5 @@ public class HaberBulteniDto extends AuditableEntity {
     private Long sonYayinId;
     private Boolean taslak;
     private List<HaberBulteniTabloDto> tablolar = new ArrayList<>();
+    private UrunDto urun;
 }

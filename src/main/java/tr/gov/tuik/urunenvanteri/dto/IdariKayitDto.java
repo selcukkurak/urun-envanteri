@@ -3,6 +3,7 @@ package tr.gov.tuik.urunenvanteri.dto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
+import tr.gov.tuik.urunenvanteri.entity.Dosya;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,4 +49,5 @@ public class IdariKayitDto extends AuditableEntity {
     private String birimDuzeyiDigerAciklama;
     private List<IletisimKisiDto> iletisimKisileri = new ArrayList<>();
     private List<TabloBilgileriDto> tablolar = new ArrayList<>();
+    private List<DosyaDto> dosyalar = new ArrayList<>();
 }

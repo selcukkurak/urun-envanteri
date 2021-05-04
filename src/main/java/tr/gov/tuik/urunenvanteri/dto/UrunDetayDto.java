@@ -18,14 +18,19 @@ public class UrunDetayDto extends AuditableEntity {
     private String kodu;
     private String adi;
     private String csa;
+    private String amac;
+    private String kapsam;
+    private String fayda;
     private String birimId;
+    private Long zamanlilik;
     private boolean taslak;
     private ReferansDto periyot;
     private ReferansDto cografiDuzey;
     private boolean uretiliyor;
-    private List<UrunHaberBulteniDto> bultenler = new ArrayList<>();
-    public List<PaylasimDto> paylasimlar = new ArrayList<>();
-    private List<UrunDto> urunler = new ArrayList<>();
-    private List<AnketDto> anketler = new ArrayList<>();
+    private List<HaberBulteniDto> bultenler = new ArrayList<>();
     private List<IdariKayitDto> idariKayitlar = new ArrayList<>();
+    private List<AnketDto> anketler = new ArrayList<>();
+    private List<UrunDto>  urunler = new ArrayList<>();
+    private List<PaylasimDto> paylasimlar = new ArrayList<>();
+    private List<MetaveriKonuDto> metaveriler = new ArrayList<>();
 }

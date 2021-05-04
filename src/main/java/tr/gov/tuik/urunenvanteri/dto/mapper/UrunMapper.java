@@ -19,15 +19,18 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring",
         uses = {
                 ReferansMapper.class,
-                UrunHaberBulteniMapper.class,
+                HaberBulteniMapper.class,
                 PaylasimMapper.class,
                 AnketMapper.class,
                 IdariKayitMapper.class,
                 MetodolojiMapper.class,
+                MetaveriKonuMapper.class
         })
 public interface UrunMapper extends GenericMapper<Urun, UrunDto> {
 
     UrunDetayDto toDetayDto(Urun urun);
+
+    Urun toDetayEntity(UrunDetayDto urunDetayDto);
 
     @Mappings({
             @Mapping(target = "urunler", source = "urunler", qualifiedByName = "urunToId")
@@ -53,7 +56,10 @@ public interface UrunMapper extends GenericMapper<Urun, UrunDto> {
     @Mappings({
             @Mapping(target = "idariKayitlar", source = "idariKayitlar"),
             @Mapping(target = "anketler", source = "anketler"),
-            @Mapping(target = "urunler", source = "urunler")
+            @Mapping(target = "urunler", source = "urunler"),
+            @Mapping(target = "paylasimlar", source = "paylasimlar"),
+            @Mapping(target = "metaveriler", source = "metaveriler"),
+            @Mapping(target = "bultenler", source = "bultenler"),
     })
     Urun toBilgilerEntity(UrunGirdiCiktiBilgileriDto urunGirdiCiktiBilgileriDto);
 

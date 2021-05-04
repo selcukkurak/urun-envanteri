@@ -12,4 +12,5 @@ public class PaylasimDto extends AuditableEntity {
     private ReferansDto arac;
     private ReferansDto kurulus;
     private ReferansDto periyot;
+    private UrunDto urun;
 }

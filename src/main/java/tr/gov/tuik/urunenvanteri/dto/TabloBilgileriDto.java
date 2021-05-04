@@ -15,4 +15,5 @@ public class TabloBilgileriDto extends AuditableEntity {
     private String aciklama;
     private String viewAdi;
     private List<KolonBilgileriDto> kolonBilgileri = new ArrayList<>();
+    private IdariKayitDto idariKayit;
 }

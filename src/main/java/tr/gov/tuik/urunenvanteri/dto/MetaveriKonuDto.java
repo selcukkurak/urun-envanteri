@@ -13,4 +13,5 @@ public class MetaveriKonuDto extends AuditableEntity {
     private Long id;
     private String baslik;
     private List<MetaveriIcerikDto> icerikler;
+    private UrunDto urun;
 }
