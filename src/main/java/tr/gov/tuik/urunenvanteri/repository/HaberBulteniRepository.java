@@ -10,7 +10,7 @@ import tr.gov.tuik.urunenvanteri.entity.Kategori;
 import java.util.List;
 
 public interface HaberBulteniRepository extends JpaRepository<HaberBulteni, String> {
-    @EntityGraph(attributePaths = {"tablolar"})
+
     List<HaberBulteni> getAllBy();
 
 }

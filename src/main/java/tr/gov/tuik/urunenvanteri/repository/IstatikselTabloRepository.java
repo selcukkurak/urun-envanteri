@@ -11,6 +11,4 @@ public interface IstatikselTabloRepository extends JpaRepository<HaberBulteniIst
     List<HaberBulteniIstatikselTablo> getAllBy();
 
     List<HaberBulteniIstatikselTablo> getAllByKategoriId(Long kategoriId);
-
-    List<HaberBulteniIstatikselTablo> getAllByBultenId(String bultenId);
 }
