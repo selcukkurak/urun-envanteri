@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -15,6 +13,7 @@ import javax.persistence.ManyToOne;
 public class HaberBulteniTablo extends AuditableEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String tabloAdi;

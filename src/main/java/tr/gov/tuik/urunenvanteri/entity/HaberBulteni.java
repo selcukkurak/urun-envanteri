@@ -5,10 +5,7 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +30,7 @@ public class HaberBulteni extends AuditableEntity {
     public List<HaberBulteniTablo> tablolar = new ArrayList<>();
 
     @OneToMany(mappedBy = "bulten")
-    public List<HaberBulteniIstatikselTablo> istatikselTablolar = new ArrayList<>();
+    public List<Kategori> kategoriler = new ArrayList<>();
 
     @ManyToOne
     private Urun urun;
