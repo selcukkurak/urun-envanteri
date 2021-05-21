@@ -6,7 +6,7 @@ import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class HaberBulteniIstatikselTabloDto extends AuditableEntity {
+public class HaberBulteniIstatikselTabloDto {
     private Long id;
     private String tabloAdi;
     private String veritabaniTabloAdi;

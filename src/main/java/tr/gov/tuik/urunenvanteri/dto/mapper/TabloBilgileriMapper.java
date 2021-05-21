@@ -4,6 +4,8 @@ import org.mapstruct.Mapper;
 import tr.gov.tuik.urunenvanteri.dto.TabloBilgileriDto;
 import tr.gov.tuik.urunenvanteri.entity.TabloBilgisi;
 
-@Mapper(componentModel = "spring", uses = KolonBilgileriMapper.class)
+@Mapper(componentModel = "spring", uses = {KolonBilgileriMapper.class,
+    IdariKayitMapper.class
+})
 public interface TabloBilgileriMapper extends GenericMapper<TabloBilgisi, TabloBilgileriDto> {
 }

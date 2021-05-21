@@ -49,5 +49,4 @@ public class IdariKayitDto extends AuditableEntity {
     private String birimDuzeyiDigerAciklama;
     private List<IletisimKisiDto> iletisimKisileri = new ArrayList<>();
     private List<TabloBilgileriDto> tablolar = new ArrayList<>();
-    private List<DosyaDto> dosyalar = new ArrayList<>();
 }

@@ -1,14 +1,15 @@
 package tr.gov.tuik.urunenvanteri.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
+
+import javax.persistence.Id;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class HaberBulteniTabloDto extends AuditableEntity {
+public class HaberBulteniTabloDto {
+    @Id
     private Long id;
     private String tabloAdi;
     private String veritabaniTabloAdi;
     private String aciklama;
+    private HaberBulteniDto bulten;
 }

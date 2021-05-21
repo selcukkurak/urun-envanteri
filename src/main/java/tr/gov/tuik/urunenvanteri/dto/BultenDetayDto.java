@@ -9,9 +9,9 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class KategoriDto extends AuditableEntity {
-    private Long id;
-    private String adi;
-    private HaberBulteniDto bulten;
-    private List<HaberBulteniIstatikselTabloDto> istatikselTablolar;
+public class BultenDetayDto extends AuditableEntity {
+
+    private String id;
+    private List<HaberBulteniTabloDto> tablolar = new ArrayList<>();
+    private List<KategoriDto> kategoriler = new ArrayList<>();
 }

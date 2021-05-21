@@ -16,4 +16,6 @@ public class KolonBilgileriDto {
     private Long keyKontrol;
 
     private String iliskiliTabloKolonAdi;
+
+    private TabloBilgileriDto tabloBilgisi;
 }
