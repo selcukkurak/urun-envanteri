@@ -1,9 +1,9 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import tr.gov.tuik.urunenvanteri.dto.BultenDetayDto;
 import tr.gov.tuik.urunenvanteri.dto.KategoriDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.KategoriMapper;
 import tr.gov.tuik.urunenvanteri.repository.KategoriRepository;
@@ -18,10 +18,19 @@ public class KategoriResource {
     private final KategoriRepository kategoriRepository;
     private final KategoriMapper kategoriMapper;
 
-    @GetMapping
-    public Stream<KategoriDto> kategoriler(){
-        return kategoriRepository.findAllBy()
+    @GetMapping("{id}")
+    public Stream<KategoriDto> kategoriler(@PathVariable String id){
+        return kategoriRepository.findByBultenId(id)
                 .stream()
                 .map(kategoriMapper::toDto);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> kategoriEkle(@RequestBody BultenDetayDto detayDto) {
+
+        for (KategoriDto dto  : detayDto.getKategoriler()) {
+            kategoriRepository.save(kategoriMapper.toEntity(dto));
+        }
+        return ResponseEntity.ok().build();
     }
 }

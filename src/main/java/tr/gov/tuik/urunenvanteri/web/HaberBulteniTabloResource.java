@@ -1,9 +1,10 @@
 package tr.gov.tuik.urunenvanteri.web;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tr.gov.tuik.urunenvanteri.dto.BultenDetayDto;
+import tr.gov.tuik.urunenvanteri.dto.HaberBulteniDto;
 import tr.gov.tuik.urunenvanteri.dto.HaberBulteniTabloDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.HaberBulteniTabloMapper;
 import tr.gov.tuik.urunenvanteri.repository.HaberBulteniTabloRepository;
@@ -31,5 +32,13 @@ public class HaberBulteniTabloResource {
                 .stream()
                 .map(haberBulteniTabloMapper::toDto);
 
+    }
+    @PostMapping
+    public ResponseEntity<?> tabloEkle(@RequestBody BultenDetayDto haberBulteniDto) {
+
+        for (HaberBulteniTabloDto dto  : haberBulteniDto.getTablolar()) {
+            haberBulteniTabloRepository.save(haberBulteniTabloMapper.toEntity(dto));
+        }
+        return ResponseEntity.ok().build();
     }
 }

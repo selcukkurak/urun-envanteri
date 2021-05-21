@@ -5,18 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.gov.tuik.urunenvanteri.dto.HaberBulteniDto;
-import tr.gov.tuik.urunenvanteri.dto.UrunDto;
-import tr.gov.tuik.urunenvanteri.dto.UrunGirdiCiktiBilgileriDto;
 import tr.gov.tuik.urunenvanteri.dto.mapper.HaberBulteniMapper;
 import tr.gov.tuik.urunenvanteri.entity.HaberBulteni;
-import tr.gov.tuik.urunenvanteri.entity.Urun;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.HaberBulteniRepository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
@@ -36,6 +31,8 @@ public class HaberBulteniYeniResource {
 
     @PostMapping
     public ResponseEntity<HaberBulteni> bultenEkle(@RequestBody HaberBulteniDto haberBulteniDto) {
+        HaberBulteni haberBulteni = new HaberBulteni();
+        haberBulteni.setTaslak(true);
         return new ResponseEntity<>(haberBulteniRepository.save(haberBulteniMapper.toEntity(haberBulteniDto)), HttpStatus.OK);
     }
 
