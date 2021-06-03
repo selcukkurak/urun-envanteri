@@ -45,7 +45,7 @@ public class IdariKayitResource {
     public Stream<IdariKayitDto> kayitSil(@PathVariable String id){
         IdariKayit kayit = idariKayitRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("İdari Kayıt", "id", id));
-        kayit.setTaslak(true);
+        kayit.setSilindi(true);
         return idariKayitlar();
     }
     @PostMapping

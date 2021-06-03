@@ -58,9 +58,7 @@ public class HaberBulteniYeniResource {
     public Stream<HaberBulteniDto> bultenSil(@PathVariable String id){
         HaberBulteni haberBulteni = haberBulteniRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Haber Bülteni", "id", id));
-        if (haberBulteni.getId().equals(id)){
-            haberBulteniRepository.delete(haberBulteni);
-        }
+        haberBulteni.setSilindi(true);
         return bultenleriGetir();
     }
 }

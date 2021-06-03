@@ -51,7 +51,7 @@ public class AnketResource {
             throws ResourceNotFoundException {
         Anket anket = anketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Bu id ile ilişkili anket bulunmamaktadır :: " + id));
-        anket.setTaslak(true);
+        anket.setSilindi(true);
         return anketler();
 
     }
