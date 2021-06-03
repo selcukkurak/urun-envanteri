@@ -5,10 +5,7 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -17,9 +14,15 @@ import javax.persistence.ManyToOne;
 public class Anket extends AuditableEntity {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(unique = true)
+    private String kodu;
+
     private String adi;
     private String csa;
+    private boolean silindi;
 
     @Column(name = "birim_id")
     private String birimId;

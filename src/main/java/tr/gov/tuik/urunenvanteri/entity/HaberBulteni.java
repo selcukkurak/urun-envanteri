@@ -16,13 +16,15 @@ import java.util.List;
 public class HaberBulteni extends AuditableEntity {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(unique = true)
+    private String kodu;
 
     private String adi;
 
-    private String donemi;
-
-    private Long sonYayinId;
+    private Boolean silindi;
 
     private Boolean taslak;
 
