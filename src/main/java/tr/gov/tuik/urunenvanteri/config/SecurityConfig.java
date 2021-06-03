@@ -38,11 +38,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/api/**");
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.csrf().disable()
