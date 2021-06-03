@@ -17,7 +17,11 @@ import java.util.List;
 public class IdariKayit extends AuditableEntity {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(unique = true)
+    private String kodu;
 
     private String adi;
     private String kaynakKurumDtvt;
@@ -35,6 +39,8 @@ public class IdariKayit extends AuditableEntity {
     private String tercihNedeni;
     private String alternatifKaynak;
     private String kisitlar;
+    private Boolean silindi;
+
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
@@ -46,7 +52,19 @@ public class IdariKayit extends AuditableEntity {
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
+    private String protokol;
+
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String teslimatSartlari;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "yasal_hukum_dosya_id", referencedColumnName = "id")
+    private Dosya yasalHukumDosya;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "protokol_dosya_id", referencedColumnName = "id")
+    private Dosya protokolDosya;
 
     @ManyToOne
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
@@ -104,7 +122,5 @@ public class IdariKayit extends AuditableEntity {
     @OneToMany(mappedBy = "idariKayit")
     private List<TabloBilgisi> tabloBilgileri = new ArrayList<>();
 
-    @OneToMany(mappedBy = "kayit", cascade = CascadeType.ALL)
-    private List<Dosya> dosyalar = new ArrayList<>();
 
 }

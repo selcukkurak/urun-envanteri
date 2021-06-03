@@ -18,15 +18,4 @@ public class Dosya extends AuditableEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String adi;
-    private String tipi;
-
-    private byte[] data;
-
-    @ManyToOne
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id"
-    )
-    @JsonIdentityReference(alwaysAsId = true)
-    private IdariKayit kayit;
 }
