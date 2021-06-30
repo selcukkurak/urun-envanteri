@@ -27,12 +27,12 @@ public class Urun extends AuditableEntity {
     private String kapsam;
     private String fayda;
     private Long zamanlilik;
-    private boolean silindi;
+    private Boolean silindi;
 
     @Column(name = "birim_id")
     private String birimId;
 
-    private boolean taslak;
+    private Boolean taslak;
 
     @ManyToOne
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
@@ -42,7 +42,7 @@ public class Urun extends AuditableEntity {
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Referans cografiDuzey;
 
-    private boolean uretiliyor;
+    private Boolean uretiliyor;
 
     @OneToMany(mappedBy = "urun")
     List<HaberBulteni> bultenler = new ArrayList<>();

@@ -22,7 +22,7 @@ public class Anket extends AuditableEntity {
 
     private String adi;
     private String csa;
-    private boolean silindi;
+    private Boolean silindi;
 
     @Column(name = "birim_id")
     private String birimId;
@@ -40,7 +40,7 @@ public class Anket extends AuditableEntity {
     private Referans birimDuzey;
 
     private Integer orneklemSayisi;
-    private boolean taslak;
+    private Boolean taslak;
     private String sema;
     private Integer harzemliDurum;
     private Integer ustDurum;
