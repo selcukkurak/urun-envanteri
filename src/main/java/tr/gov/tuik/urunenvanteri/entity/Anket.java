@@ -40,7 +40,7 @@ public class Anket extends AuditableEntity {
     private Referans birimDuzey;
 
     private Integer orneklemSayisi;
-    private Boolean taslak;
+    private boolean taslak;
     private String sema;
     private Integer harzemliDurum;
     private Integer ustDurum;

@@ -24,9 +24,9 @@ public class HaberBulteni extends AuditableEntity {
 
     private String adi;
 
-    private Boolean silindi;
+    private boolean silindi;
 
-    private Boolean taslak;
+    private boolean taslak;
 
     @OneToMany(mappedBy = "bulten")
     public List<HaberBulteniTablo> tablolar = new ArrayList<>();

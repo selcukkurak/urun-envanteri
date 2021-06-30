@@ -27,12 +27,12 @@ public class Urun extends AuditableEntity {
     private String kapsam;
     private String fayda;
     private Long zamanlilik;
-    private Boolean silindi;
+    private boolean silindi;
 
     @Column(name = "birim_id")
     private String birimId;
 
-    private boolean taslak = true;
+    private boolean taslak;
 
     @ManyToOne
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)

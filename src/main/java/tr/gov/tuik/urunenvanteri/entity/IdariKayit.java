@@ -30,7 +30,7 @@ public class IdariKayit extends AuditableEntity {
     private String kaynakKurumAdi;
     private String kaynakBirimAdi;
     private String birimId;
-    private Boolean taslak;
+    private boolean taslak;
     private String transferdenSorumluBirimId;
     private String epostaGruplari;
     private String csa;
@@ -39,7 +39,7 @@ public class IdariKayit extends AuditableEntity {
     private String tercihNedeni;
     private String alternatifKaynak;
     private String kisitlar;
-    private Boolean silindi;
+    private boolean silindi;
 
 
     @Lob
