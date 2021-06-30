@@ -5,7 +5,8 @@ import tr.gov.tuik.urunenvanteri.dto.HaberBulteniDto;
 import tr.gov.tuik.urunenvanteri.entity.HaberBulteni;
 
 @Mapper(componentModel = "spring", uses = {
-        UrunMapper.class
+        UrunMapper.class,
+        HaberBulteniTabloMapper.class
 })
 public interface HaberBulteniMapper extends GenericMapper<HaberBulteni, HaberBulteniDto> {
 }

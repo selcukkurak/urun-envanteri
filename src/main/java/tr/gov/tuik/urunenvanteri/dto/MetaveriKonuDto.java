@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class MetaveriKonuDto extends AuditableEntity {
+    @Id
     private Long id;
     private String baslik;
     private List<MetaveriIcerikDto> icerikler;

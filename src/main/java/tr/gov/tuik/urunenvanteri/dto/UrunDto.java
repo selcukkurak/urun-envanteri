@@ -1,5 +1,6 @@
 package tr.gov.tuik.urunenvanteri.dto;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
@@ -11,7 +12,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class UrunDto extends AuditableEntity {
     private Long id;
+    @NotNull
     private String kodu;
+    @NotNull
     private String adi;
     private String csa;
     private String amac;

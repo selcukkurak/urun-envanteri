@@ -14,7 +14,7 @@ public class UrunIdariKayitMapper {
                 urun.getIdariKayitlar()
                         .stream()
                         .map(idariKayit -> new IdariKayitUrunDto(
-                                idariKayit.getId()
+                                idariKayit.getKodu()
                         )).collect(Collectors.toList())
         );
     }

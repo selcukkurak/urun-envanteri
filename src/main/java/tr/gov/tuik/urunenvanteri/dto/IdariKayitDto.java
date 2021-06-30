@@ -1,5 +1,6 @@
 package tr.gov.tuik.urunenvanteri.dto;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class IdariKayitDto extends AuditableEntity {
     private String id;
+    @NotNull
     private String adi;
     private String icerik;
     private String kaynakKurumDtvt;
@@ -20,12 +22,16 @@ public class IdariKayitDto extends AuditableEntity {
     private String kaynakKurumAdi;
     private String kaynakBirimAdi;
     private Boolean taslak;
+    private Boolean silindi;
     private String birimId;
     private String transferdenSorumluBirimId;
     private String epostaGruplari;
     private String csa;
     private String sema;
     private String veritabani;
+    private Long protokolDosyaId;
+    private String protokol;
+    private Long yasalHukumDosyaId;
     private String tercihNedeni;
     private String alternatifKaynak;
     private String kisitlar;

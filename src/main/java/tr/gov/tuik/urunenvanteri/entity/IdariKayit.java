@@ -59,11 +59,11 @@ public class IdariKayit extends AuditableEntity {
     private String teslimatSartlari;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "yasal_hukum_dosya_id", referencedColumnName = "id")
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Dosya yasalHukumDosya;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "protokol_dosya_id", referencedColumnName = "id")
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Dosya protokolDosya;
 
     @ManyToOne

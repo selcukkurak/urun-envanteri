@@ -11,5 +11,5 @@ public class HaberBulteniTabloDto {
     private String tabloAdi;
     private String veritabaniTabloAdi;
     private String aciklama;
-    private HaberBulteniDto bulten;
+    private Long bultenId;
 }

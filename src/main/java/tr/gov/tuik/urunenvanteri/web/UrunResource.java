@@ -11,6 +11,7 @@ import tr.gov.tuik.urunenvanteri.entity.Urun;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.UrunRepository;
 import tr.gov.tuik.urunenvanteri.security.Admin;
+import tr.gov.tuik.urunenvanteri.security.Kullanici;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,18 +31,20 @@ public class UrunResource {
         this.urunKurulusMapper = urunKurulusMapper;
     }
 
+    @Kullanici
     @GetMapping
     public Stream<UrunDto> urunler() {
         return urunRepository.findAllBy()
                 .stream()
                 .map(urunMapper::toDto);
     }
-
-    @PostMapping("yetkisiz")
+    @Admin
+    @PostMapping
     public ResponseEntity<Urun> urunEkleme(@RequestBody UrunDto urunDto) {
         log.info("Ürün DTO: {}", urunDto);
         Urun urun = new Urun();
         urun.setTaslak(true);
+        urun.setSilindi(false);
         return new ResponseEntity<>(urunRepository.save(urunMapper.toEntity(urunDto)), HttpStatus.OK);
     }
 
@@ -54,17 +57,17 @@ public class UrunResource {
         } else return urunler();
     }
 
-    @Admin
-    @PostMapping
-    public UrunDto urunEkle(@RequestBody UrunDto payload) {
-        Urun urun = new Urun();
-        urun.setKodu(payload.getKodu());
-        urun.setAdi(payload.getAdi());
-        urun.setCsa(payload.getCsa());
-        urun.setBirimId(payload.getBirimId());
-
-        return urunMapper.toDto(urunRepository.save(urun));
-    }
+//    @Admin
+//    @PostMapping
+//    public UrunDto urunEkle(@RequestBody UrunDto payload) {
+//        Urun urun = new Urun();
+//        urun.setKodu(payload.getKodu());
+//        urun.setAdi(payload.getAdi());
+//        urun.setCsa(payload.getCsa());
+//        urun.setBirimId(payload.getBirimId());
+//
+//        return urunMapper.toDto(urunRepository.save(urun));
+//    }
 
 
     @Admin
@@ -89,7 +92,7 @@ public class UrunResource {
 
     }
 
-    @PutMapping("version/{id}")
+    @PutMapping("sil/{id}")
     public Stream<UrunDto> urunSil(@PathVariable Long id) {
         Urun urun = urunRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));

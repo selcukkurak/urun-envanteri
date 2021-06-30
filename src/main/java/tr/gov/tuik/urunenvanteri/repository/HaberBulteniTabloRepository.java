@@ -7,7 +7,5 @@ import java.util.List;
 
 public interface HaberBulteniTabloRepository extends JpaRepository<HaberBulteniTablo, Long> {
 
-    List<HaberBulteniTablo> getAllBy();
-
-    List<HaberBulteniTablo> getAllByBultenId(String bultenId);
+    List<HaberBulteniTablo> getAllByBultenId(Long bulten_id);
 }

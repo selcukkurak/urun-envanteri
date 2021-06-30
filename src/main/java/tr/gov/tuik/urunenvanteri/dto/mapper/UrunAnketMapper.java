@@ -14,7 +14,7 @@ public class UrunAnketMapper {
                 urun.getAnketler()
                         .stream()
                         .map(anket -> new AnketUrunDto(
-                                anket.getId()
+                                anket.getKodu()
                         ))
                         .collect(Collectors.toList())
         );

@@ -19,16 +19,10 @@ public class HaberBulteniTabloResource {
     private final HaberBulteniTabloRepository haberBulteniTabloRepository;
     private final HaberBulteniTabloMapper haberBulteniTabloMapper;
 
-    @GetMapping
-    public Stream<HaberBulteniTabloDto> tablolar(){
-        return haberBulteniTabloRepository.getAllBy()
-                .stream()
-                .map(haberBulteniTabloMapper::toDto);
-    }
 
     @GetMapping("{id}")
-    public Stream<HaberBulteniTabloDto> bulteneGoreTablolariGetir(@PathVariable String id){
-        return haberBulteniTabloRepository.getAllByBultenId(id)
+    public Stream<HaberBulteniTabloDto> bulteneGoreTablolariGetir(@PathVariable Long id){
+        return  haberBulteniTabloRepository.getAllByBultenId(id)
                 .stream()
                 .map(haberBulteniTabloMapper::toDto);
 
@@ -37,7 +31,7 @@ public class HaberBulteniTabloResource {
     public ResponseEntity<?> tabloEkle(@RequestBody BultenDetayDto haberBulteniDto) {
 
         for (HaberBulteniTabloDto dto  : haberBulteniDto.getTablolar()) {
-            haberBulteniTabloRepository.save(haberBulteniTabloMapper.toEntity(dto));
+            haberBulteniTabloRepository.save(haberBulteniTabloMapper.toResourceDto(dto));
         }
         return ResponseEntity.ok().build();
     }

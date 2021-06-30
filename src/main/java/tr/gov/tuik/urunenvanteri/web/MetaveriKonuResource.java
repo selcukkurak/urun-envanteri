@@ -12,6 +12,8 @@ import tr.gov.tuik.urunenvanteri.entity.MetaveriKonu;
 import tr.gov.tuik.urunenvanteri.exception.ResourceNotFoundException;
 import tr.gov.tuik.urunenvanteri.repository.MetaveriKonuRepository;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
@@ -37,15 +39,12 @@ public class MetaveriKonuResource {
     }
 
     @PostMapping
-    public ResponseEntity<?> metaveriEkle(@RequestBody UrunGirdiCiktiBilgileriDto dto){
-
-        for (MetaveriKonuDto konuDto: dto.getMetaveriler()){
-            metaveriKonuRepository.save(metaveriKonuMapper.toEntity(konuDto));
-        }
-        return ResponseEntity.ok().build();
+    public Stream<MetaveriKonuDto> metaveriEkle(@RequestBody MetaveriKonuDto dto){
+        metaveriKonuRepository.save(metaveriKonuMapper.toEntity(dto));
+        return metaveriler();
     }
 
-    @PutMapping("guncelle/{id}")
+    @PutMapping("/guncelle/{id}")
     public Stream<MetaveriKonuDto> metaveriGuncelle(@PathVariable Long id, @RequestBody MetaveriKonuDto metaveriKonuDto){
         MetaveriKonu metaveriKonu = metaveriKonuRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("metaveri", "id" ,id));
@@ -54,7 +53,15 @@ public class MetaveriKonuResource {
         }
         return metaveriler();
     }
+    @DeleteMapping("/{id}")
+    public Stream<MetaveriKonuDto> deleteMetaveri(@PathVariable Long id)
+            throws ResourceNotFoundException {
+        MetaveriKonu metaveri = metaveriKonuRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Metaveri Bulunamadı :: " + id));
 
+        metaveriKonuRepository.delete(metaveri);
+        return metaveriler();
+    }
 
 
 }

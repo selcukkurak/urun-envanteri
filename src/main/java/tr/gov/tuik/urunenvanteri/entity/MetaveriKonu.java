@@ -1,5 +1,6 @@
 package tr.gov.tuik.urunenvanteri.entity;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
@@ -18,6 +19,7 @@ public class MetaveriKonu extends AuditableEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     @Column(name = "konu_baslik")
     private String baslik;
 

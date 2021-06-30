@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class IdariKayitUrunDto {
 
-    private final String id;
+    private final String kodu;
 }

@@ -9,5 +9,5 @@ public class MetaveriIcerikDto {
     private Long id;
     private String aciklama;
     private MetaveriAlanDto alan;
-    private MetaveriKonuDto mv;
+    private Long mvId;
 }

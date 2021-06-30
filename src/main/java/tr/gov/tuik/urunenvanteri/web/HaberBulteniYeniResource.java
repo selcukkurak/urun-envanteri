@@ -47,8 +47,8 @@ public class HaberBulteniYeniResource {
     private List<HaberBulteni> urunIdGuncelle(@RequestBody List<HaberBulteniDto> dtoList) {
         List<HaberBulteni> haberBultenleri = new ArrayList<>();
         for (HaberBulteniDto dto : dtoList) {
-            HaberBulteni haberBulteni = haberBulteniRepository.findById(dto.getId())
-                    .orElseThrow(() -> new ResourceNotFoundException("id", "haber bülteni" , dto.getId()));
+            HaberBulteni haberBulteni = haberBulteniRepository.findById(dto.getKodu())
+                    .orElseThrow(() -> new ResourceNotFoundException("kodu", "haber bülteni" , dto.getKodu()));
             haberBulteniRepository.save(haberBulteniMapper.toEntity(dto));
         }
         return haberBultenleri;

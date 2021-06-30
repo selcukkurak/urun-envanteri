@@ -20,22 +20,23 @@ public class MetaveriIcerikResource {
     private final MetaveriIcerikRepository metaveriIcerikRepository;
     private final MetaveriIcerikMapper metaveriIcerikMapper;
 
-    @GetMapping("{id")
-    public Stream<MetaveriIcerikDto> icerikler(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public Stream<MetaveriIcerikDto> icerikGetir(@PathVariable Long id){
         return metaveriIcerikRepository.getAllByMv_Id(id)
                 .stream()
                 .map(metaveriIcerikMapper::toDto);
     }
+    @GetMapping
+    public Stream<MetaveriIcerikDto> icerikler(){
+        return metaveriIcerikRepository.findAll()
+                .stream()
+                .map(metaveriIcerikMapper::toDto);
+    }
     @PostMapping
-    public ResponseEntity<?> icerikEkle(@RequestBody MetaveriKonuDto dto){
+    public Stream<MetaveriIcerikDto> icerikEkle(@RequestBody MetaveriIcerikDto dto){
 
-        for (MetaveriIcerikDto icerikDto: dto.getIcerikler()){
-
-            metaveriIcerikRepository.save(metaveriIcerikMapper.toEntity(icerikDto));
-
-
-        }
-        return ResponseEntity.ok().build();
+        metaveriIcerikRepository.save(metaveriIcerikMapper.toResourceEntity(dto));
+        return icerikler();
     }
 
 }
