@@ -6,15 +6,19 @@ import lombok.EqualsAndHashCode;
 import tr.gov.tuik.urunenvanteri.entity.AuditableEntity;
 import tr.gov.tuik.urunenvanteri.entity.Dosya;
 
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class IdariKayitDto extends AuditableEntity {
-    private String id;
+    @Id
+    private Long id;
     @NotNull
     private String adi;
+    @NotNull
+    private String kodu;
     private String icerik;
     private String kaynakKurumDtvt;
     private String kaynakBirimDtvt;
