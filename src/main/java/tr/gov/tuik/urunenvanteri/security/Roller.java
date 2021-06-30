@@ -6,4 +6,5 @@ import org.springframework.stereotype.Component;
 public class Roller {
     public static final String ADMIN = "ADMIN";
     public static final String KULLANICI = "KULLANICI";
+    public static final String DENEME = "deneme";
 }
