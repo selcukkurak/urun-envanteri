@@ -11,7 +11,7 @@
     <groupId>tr.gov.tuik</groupId>
     <artifactId>tuik-urun-envanteri</artifactId>
     <version>0.1.0</version>
-    <name>tuik-urun-envanteri</name>
+    <name>urun-envanteri-api</name>
     <description>İstatistiki Ürün Envanteri 2.0</description>
 
     <properties>

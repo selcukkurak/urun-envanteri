@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableFeignClients
 @EnableJpaRepositories(repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean.class)
-public class TuikUrunEnvanteriApplication {
+public class UrunEnvanteriApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TuikUrunEnvanteriApplication.class, args);
+        SpringApplication.run(UrunEnvanteriApplication.class, args);
     }
 
 }
