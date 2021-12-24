@@ -11,10 +11,8 @@ import java.util.stream.Stream;
 @NoArgsConstructor
 public class Sayilar {
 
-    private Long urunSayisi;
     private Long anketSayisi;
     private Long idariKayitSayisi;
-    private Long bultenSayisi;
     private Long kurumSayisi;
     private Long kurulusSayisi;
 

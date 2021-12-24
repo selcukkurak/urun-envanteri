@@ -100,17 +100,7 @@ public class UrunResource {
         return urunler();
     }
 
-    @GetMapping("{id}")
-    public UrunDetayDto urunDetay(@PathVariable Long id) {
-        return urunRepository.findWithDetayById(id)
-                .map(urunMapper::toDetayDto)
-                .orElseThrow(() -> new ResourceNotFoundException("Urun", "id", id));
-    }
 
-    @GetMapping("sayi")
-    public Long urunSayisi() {
-        return urunRepository.urunSayisi();
-    }
 
     @GetMapping("baglantilar")
     public Stream<UrunBagliUrunlerDto> urunBaglantilari() {
@@ -181,10 +171,5 @@ public class UrunResource {
     }
 
 
-    @Admin
-    @GetMapping("{id}/loglar")
-    public List<Revision<Integer, Urun>> urunLoglari(@PathVariable Long id) {
-        return urunRepository.findRevisions(id).getContent();
-    }
 
 }

@@ -11,7 +11,7 @@ import tr.gov.tuik.urunenvanteri.entity.Urun;
 import java.util.List;
 import java.util.Optional;
 
-public interface UrunRepository extends JpaRepository<Urun, Long>, RevisionRepository<Urun, Long, Integer> {
+public interface UrunRepository extends JpaRepository<Urun, Long> {
 
     @EntityGraph(attributePaths = {"bultenler", "periyot", "cografiDuzey"})
     List<Urun> findAllBy();
@@ -19,8 +19,7 @@ public interface UrunRepository extends JpaRepository<Urun, Long>, RevisionRepos
     @EntityGraph(attributePaths = {"bultenler", "periyot", "cografiDuzey"})
     List<Urun> findByTaslakFalse();
 
-    @EntityGraph(attributePaths = {"bultenler", "periyot", "cografiDuzey"})
-    Optional<Urun> findWithDetayById(Long id);
+
 
     @EntityGraph(attributePaths = {"urunler"})
     List<Urun> findWithUrunlerByTaslakFalse();
@@ -28,8 +27,6 @@ public interface UrunRepository extends JpaRepository<Urun, Long>, RevisionRepos
     @Query("select new tr.gov.tuik.urunenvanteri.dto.UrunRaporDto(u.id, size(u.urunler), size(u.anketler), size(u.idariKayitlar) ) from Urun u")
     List<UrunRaporDto> urunGirdiSayilari();
 
-    @Query("select count(u.id) from Urun u where u.taslak=false ")
-    Long urunSayisi();
 
     @EntityGraph(attributePaths = {"idariKayitlar"})
     List<Urun> findAllWithIdariKayitIdBy();
